@@ -44,7 +44,7 @@ public class DirectoryTest {
 
     @Test
     public void testgetNumberDirectories() {
-        assertEquals(1, carpeta.getNumberDirectories(), 0);
+        assertEquals(2, carpeta.getNumberDirectories(), 0);
     }
 
     @Test
