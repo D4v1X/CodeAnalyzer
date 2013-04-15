@@ -1,53 +1,64 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package Analyzer;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+public class JavaCodeAnalyzer extends CodeAnalyzer {
 
-/**
- *
- * @author davidsantiagobarrera
- */
-public class JavaCodeAnalyzer extends CodeAnalyzer{
-    private final File javaText; 
+    private final CodeFile codeFile;
 
     public JavaCodeAnalyzer(String javaText) {
-        this.javaText = new File(javaText);
+        this.codeFile = new CodeFile(javaText);
     }
 
-    public File getJavaText() {
-        return javaText;
-    }
-    
-    public Integer getNumberLines(){
+    public Integer getNumberLines() {
         Integer NumberLines = 0;
-        FileReader fileReader = null;
-        try {
-            fileReader = new FileReader(javaText);
-            BufferedReader file = new BufferedReader(fileReader);
-            while(file.ready()){
-                file.readLine();
+        codeFile.open();
+        while (codeFile.getLine() != null) {
+            NumberLines++;
+        }
+        codeFile.close();
+        return NumberLines;
+    }
+
+    public Integer getNumberBlankLines() {
+        Integer NumberLines = 0;
+        codeFile.open();
+        String line = codeFile.getLine();
+        while (line != null) {
+            if (line.isEmpty()) {
                 NumberLines++;
             }
-        } catch (IOException ex) {
-            Logger.getLogger(JavaCodeAnalyzer.class.getName()).log(Level.SEVERE, null, ex);
-        } finally{
-            if(fileReader != null){
-                try {
-                    fileReader.close();
-                } catch (IOException ex) {
-                    Logger.getLogger(JavaCodeAnalyzer.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
+            line = codeFile.getLine();
         }
+        codeFile.close();
         return NumberLines;
+    }
+
+    public Integer getNumberImports() {
+        return SearchString("import");
+    }
+
+    public Integer getNumberPackages() {
+        return SearchString("package");
+    }
+
+    public Integer getNumberPublicClasses() {
+        return SearchString("public class");
+    }
+
+    public Integer getNumberPrivateClasses() {
+        return SearchString("private class");
+    }
+
+    private Integer SearchString(String word) {
+        Integer NumberImports = 0;
+        codeFile.open();
+        String line = codeFile.getLine();
+        while (line != null) {
+            if (line.contains(word)) {
+                NumberImports++;
+            }
+            line = codeFile.getLine();
+        }
+        codeFile.close();
+        return NumberImports;
     }
 }
