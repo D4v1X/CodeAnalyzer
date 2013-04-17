@@ -8,16 +8,18 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 public class FileAnalyzer {
-    
-    public static GenericFile createDirectoryTree(String path) throws IOException{
+
+    public static GenericFile createDirectoryTree(String path) throws IOException {
         File file = new File(path);
-        if (!file.exists()) throw new FileNotFoundException();
+        if (!file.exists()) {
+            throw new FileNotFoundException();
+        }
         Directory directory = new Directory(file.getPath());
-        for (File fileIterator : file.listFiles()){
-            if (fileIterator.isDirectory()){
+        for (File fileIterator : file.listFiles()) {
+            if (fileIterator.isDirectory()) {
                 directory.addGenericFileChild(FileAnalyzer.createDirectoryTree(fileIterator.getPath()));
             }
-            if (fileIterator.getName().endsWith(".java")){
+            if (fileIterator.getName().endsWith(".java")) {
                 directory.addGenericFileChild(new CodeFile(fileIterator.getPath()));
             }
         }

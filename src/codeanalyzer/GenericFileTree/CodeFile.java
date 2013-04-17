@@ -15,5 +15,4 @@ public class CodeFile extends GenericFile {
     public Boolean isCodeFile() {
         return true;
     }
-    
 }

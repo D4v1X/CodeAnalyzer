@@ -1,13 +1,13 @@
 package Analyzer;
 
 public class JavaCodeAnalyzer extends CodeAnalyzer {
-
+    
     private final CodeFile codeFile;
-
+    
     public JavaCodeAnalyzer(String javaText) {
         this.codeFile = new CodeFile(javaText);
     }
-
+    
     public Integer getNumberLines() {
         Integer NumberLines = 0;
         codeFile.open();
@@ -17,7 +17,7 @@ public class JavaCodeAnalyzer extends CodeAnalyzer {
         codeFile.close();
         return NumberLines;
     }
-
+    
     public Integer getNumberBlankLines() {
         Integer NumberLines = 0;
         codeFile.open();
@@ -31,7 +31,7 @@ public class JavaCodeAnalyzer extends CodeAnalyzer {
         codeFile.close();
         return NumberLines;
     }
-
+    
     public Integer getNumberMethods() {
         Integer NumberMethods = 0;
         codeFile.open();
@@ -45,23 +45,23 @@ public class JavaCodeAnalyzer extends CodeAnalyzer {
         codeFile.close();
         return NumberMethods;
     }
-
+    
     public Integer getNumberImports() {
         return SearchString("import");
     }
-
+    
     public Integer getNumberPackages() {
         return SearchString("package");
     }
-
+    
     public Integer getNumberPublicClasses() {
         return SearchString("public class");
     }
-
+    
     public Integer getNumberPrivateClasses() {
         return SearchString("private class");
     }
-
+    
     private Integer SearchString(String word) {
         Integer NumberImports = 0;
         codeFile.open();
