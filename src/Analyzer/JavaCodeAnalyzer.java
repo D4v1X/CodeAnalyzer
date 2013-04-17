@@ -32,6 +32,20 @@ public class JavaCodeAnalyzer extends CodeAnalyzer {
         return NumberLines;
     }
 
+    public Integer getNumberMethods() {
+        Integer NumberMethods = 0;
+        codeFile.open();
+        String line = codeFile.getLine();
+        while (line != null) {
+            if ((line.contains("private") || line.contains("public") || line.contains("protected")) && (line.contains("("))) {
+                NumberMethods++;
+            }
+            line = codeFile.getLine();
+        }
+        codeFile.close();
+        return NumberMethods;
+    }
+
     public Integer getNumberImports() {
         return SearchString("import");
     }

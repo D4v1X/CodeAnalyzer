@@ -13,12 +13,17 @@ public class JavaCodeAnalyzerTest {
 
     @Test
     public void testGetNumberLines() {
-        assertEquals(43, javaCodeAnalyzer.getNumberLines(), 0);
+        assertEquals(35, javaCodeAnalyzer.getNumberLines(), 0);
     }
 
     @Test
     public void testGetNumberBlankLines() {
         assertEquals(6, javaCodeAnalyzer.getNumberBlankLines(), 0);
+    }
+
+    @Test
+    public void testGetNumberMethods() {
+        assertEquals(3, javaCodeAnalyzer.getNumberMethods(), 0);
     }
 
     @Test
