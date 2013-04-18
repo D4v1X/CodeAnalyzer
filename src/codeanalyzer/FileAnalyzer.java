@@ -14,13 +14,17 @@ public class FileAnalyzer {
         if (!file.exists()) throw new FileNotFoundException();
         Directory directory = new Directory(file.getPath());
         for (File fileIterator : file.listFiles()){
-            if (fileIterator.isDirectory()){
-                directory.addGenericFileChild(FileAnalyzer.createDirectoryTree(fileIterator.getPath()));
-            }
-            if (fileIterator.getName().endsWith(".java")){
-                directory.addGenericFileChild(new CodeFile(fileIterator.getPath()));
-            }
+            childrenSelector(fileIterator, directory);
         }
         return directory;
+    }
+
+    private static void childrenSelector(File fileIterator, Directory directory) throws IOException {
+        if (fileIterator.isDirectory()){
+            directory.addGenericFileChild(FileAnalyzer.createDirectoryTree(fileIterator.getPath()));
+        }
+        if (fileIterator.getName().endsWith(".java")){
+            directory.addGenericFileChild(new CodeFile(fileIterator.getPath()));
+        }
     }
 }
