@@ -1,17 +1,28 @@
-package Analyzer;
+package Analyzer.java;
 
-public class JavaCodeAnalyzer extends CodeAnalyzer {
+import Analyzer.CodeAnalyzer;
+import Analyzer.CodeFile;
+
+//TODO Aplicar reflection, para la extraccion del metodo que nos servira para 
+//refactorizar el codigo de busqueda en el fichero
+//anotaciones para las funciones isxxxxx
+//Tabla hash para metodos
+//Pasar el metodo e invocar.
+
+//TODO 
+public class JavaAnalyzer extends CodeAnalyzer {
     
     private final CodeFile codeFile;
     
-    public JavaCodeAnalyzer(String javaText) {
+    public JavaAnalyzer(String javaText) {
         this.codeFile = new CodeFile(javaText);
     }
     
     public Integer getNumberLines() {
         Integer NumberLines = 0;
         codeFile.open();
-        while (codeFile.getLine() != null) {
+        String line = codeFile.getLine();
+        while (line != null) {
             NumberLines++;
         }
         codeFile.close();
@@ -37,7 +48,7 @@ public class JavaCodeAnalyzer extends CodeAnalyzer {
         codeFile.open();
         String line = codeFile.getLine();
         while (line != null) {
-            if ((line.contains("private") || line.contains("public") || line.contains("protected")) && (line.contains("("))) {
+            if (isMethod(line)) {
                 NumberMethods++;
             }
             line = codeFile.getLine();
@@ -74,5 +85,9 @@ public class JavaCodeAnalyzer extends CodeAnalyzer {
         }
         codeFile.close();
         return NumberImports;
+    }
+
+    private boolean isMethod(String line) {
+        return (line.contains("private") || line.contains("public") || line.contains("protected")) && (line.contains("("));
     }
 }

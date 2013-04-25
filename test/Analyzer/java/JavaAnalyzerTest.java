@@ -1,14 +1,14 @@
-package Analyzer;
+package Analyzer.java;
 
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-public class JavaCodeAnalyzerTest {
+public class JavaAnalyzerTest {
 
-    JavaCodeAnalyzer javaCodeAnalyzer;
+    JavaAnalyzer javaCodeAnalyzer;
 
-    public JavaCodeAnalyzerTest() {
-        javaCodeAnalyzer = new JavaCodeAnalyzer("./test/TestFiles/TestJavaCode.java");
+    public JavaAnalyzerTest() {
+        javaCodeAnalyzer = new JavaAnalyzer("./test/TestFiles/TestJavaCode.java");
     }
 
     @Test

@@ -1,5 +1,6 @@
 package Analyzer;
 
+import Analyzer.java.JavaAnalyzer;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -14,7 +15,7 @@ public class CodeFile {
     private FileReader fileReader;
     private final String code;
 
-    CodeFile(String code) {
+    public CodeFile(String code) {
         this.code = code;
     }
 
@@ -24,7 +25,7 @@ public class CodeFile {
             fileReader = new FileReader(codeFile);
             bufferCodeLine = new BufferedReader(fileReader);
         } catch (IOException ex) {
-            Logger.getLogger(JavaCodeAnalyzer.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JavaAnalyzer.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
         return true;
@@ -35,7 +36,7 @@ public class CodeFile {
         try {
             line = bufferCodeLine.readLine();
         } catch (IOException ex) {
-            Logger.getLogger(JavaCodeAnalyzer.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JavaAnalyzer.class.getName()).log(Level.SEVERE, null, ex);
         }
         return line;
     }
@@ -45,7 +46,7 @@ public class CodeFile {
             fileReader.close();
             bufferCodeLine.close();
         } catch (IOException ex) {
-            Logger.getLogger(JavaCodeAnalyzer.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(JavaAnalyzer.class.getName()).log(Level.SEVERE, null, ex);
             return false;
         }
         return true;
