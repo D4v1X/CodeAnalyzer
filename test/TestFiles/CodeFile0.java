@@ -7,11 +7,11 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class TestJavaCode {
+public class CodeFile0 {
 
     private final File javaText;
 
-    public TestJavaCode(String javaText) {
+    public CodeFile0(String javaText) {
         this.javaText = new File(javaText);
     }
 
@@ -28,7 +28,7 @@ public class TestJavaCode {
                 NumberLines++;
             }
         } catch (IOException ex) {
-            Logger.getLogger(TestJavaCode.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(CodeFile0.class.getName()).log(Level.SEVERE, null, ex);
         }
         return NumberLines;
     }

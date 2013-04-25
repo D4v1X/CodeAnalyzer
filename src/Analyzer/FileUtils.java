@@ -8,14 +8,14 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class CodeFile {
+public class FileUtils {
 
     private BufferedReader bufferCodeLine;
     private File codeFile;
     private FileReader fileReader;
     private final String code;
 
-    public CodeFile(String code) {
+    public FileUtils(String code) {
         this.code = code;
     }
 

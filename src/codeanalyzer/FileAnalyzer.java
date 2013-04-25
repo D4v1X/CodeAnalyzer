@@ -1,8 +1,8 @@
 package codeanalyzer;
 
-import codeanalyzer.GenericFileTree.CodeFile;
-import codeanalyzer.GenericFileTree.Directory;
-import codeanalyzer.GenericFileTree.GenericFile;
+import Analyzer.GenericFileTree.CodeFile;
+import Analyzer.GenericFileTree.Directory;
+import Analyzer.GenericFileTree.GenericFile;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
@@ -15,17 +15,17 @@ public class FileAnalyzer {
             throw new FileNotFoundException();
         }
         Directory directory = new Directory(file.getPath());
-        for (File fileIterator : file.listFiles()){
+        for (File fileIterator : file.listFiles()) {
             childrenSelector(fileIterator, directory);
         }
         return directory;
     }
 
     private static void childrenSelector(File fileIterator, Directory directory) throws IOException {
-        if (fileIterator.isDirectory()){
+        if (fileIterator.isDirectory()) {
             directory.addGenericFileChild(FileAnalyzer.createDirectoryTree(fileIterator.getPath()));
         }
-        if (fileIterator.getName().endsWith(".java")){
+        if (fileIterator.getName().endsWith(".java")) {
             directory.addGenericFileChild(new CodeFile(fileIterator.getPath()));
         }
     }

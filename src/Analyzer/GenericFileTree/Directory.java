@@ -1,4 +1,4 @@
-package codeanalyzer.GenericFileTree;
+package Analyzer.GenericFileTree;
 
 import java.util.ArrayList;
 import java.util.Iterator;

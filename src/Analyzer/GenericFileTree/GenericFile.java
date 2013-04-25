@@ -1,4 +1,4 @@
-package codeanalyzer.GenericFileTree;
+package Analyzer.GenericFileTree;
 
 public abstract class GenericFile {
 
