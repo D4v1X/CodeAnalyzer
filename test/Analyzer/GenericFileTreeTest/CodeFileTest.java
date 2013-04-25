@@ -1,6 +1,7 @@
 package Analyzer.GenericFileTreeTest;
 
 import Analyzer.GenericFileTree.CodeFile;
+import java.io.File;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -11,7 +12,7 @@ public class CodeFileTest {
 
     @Before
     public void createCodeFile() {
-        codeFile = new CodeFile(".\\test\\TestFiles\\CodeFile1.java");
+        codeFile = new CodeFile("."+File.separator+"test"+File.separator+"TestFiles"+File.separator+"CodeFile1.java");
     }
 
     @Test

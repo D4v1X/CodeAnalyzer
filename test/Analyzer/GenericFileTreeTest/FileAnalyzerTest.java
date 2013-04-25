@@ -2,6 +2,7 @@ package Analyzer.GenericFileTreeTest;
 
 import codeanalyzer.FileAnalyzer;
 import Analyzer.GenericFileTree.GenericFile;
+import java.io.File;
 import java.io.IOException;
 import static org.junit.Assert.*;
 import org.junit.Test;
@@ -13,7 +14,7 @@ public class FileAnalyzerTest {
     @Test
     public void testCreateDirectoryTree() {
         try {
-            genericFile = FileAnalyzer.createDirectoryTree(".\\test\\TestFiles");
+            genericFile = FileAnalyzer.createDirectoryTree("."+File.separator+"test"+File.separator+"TestFiles");
         } catch (IOException ex) {
             assertFalse(true);
         }

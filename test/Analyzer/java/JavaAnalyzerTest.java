@@ -1,15 +1,13 @@
 package Analyzer.java;
 
 import static org.junit.Assert.*;
-import org.junit.Before;
 import org.junit.Test;
 
 public class JavaAnalyzerTest {
 
     JavaAnalyzer javaCodeAnalyzer;
 
-    @Before
-    public void JavaAnalyzer() {
+    public JavaAnalyzerTest() {
         javaCodeAnalyzer = new JavaAnalyzer("./test/TestFiles/CodeFile0.java");
     }
 
