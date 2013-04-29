@@ -14,7 +14,7 @@ public class FileAnalyzerTest {
     @Test
     public void testCreateDirectoryTree() {
         try {
-            genericFile = FileAnalyzer.createDirectoryTree("."+File.separator+"test"+File.separator+"TestFiles");
+            genericFile = FileAnalyzer.createDirectoryTree("." + File.separator + "test" + File.separator + "TestFiles");
         } catch (IOException ex) {
             assertFalse(true);
         }

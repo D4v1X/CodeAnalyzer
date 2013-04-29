@@ -4,19 +4,19 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-public class JavaAnalyzerTest {
+public class AnalyzerTest {
 
-    JavaAnalyzer javaCodeAnalyzer;
-    
+    Analyzer javaCodeAnalyzer;
+
     @Before
     public void JavaAnalyzer() {
-        javaCodeAnalyzer = new JavaAnalyzer("./test/TestFiles/CodeFile0.java");
+        javaCodeAnalyzer = new Analyzer("./test/TestFiles/CodeFile0.java");
     }
 
-//    @Test
-//    public void testGetNumberLines() {
-//        assertEquals(35, javaCodeAnalyzer.getNumberLines(), 0);
-//    }
+    @Test
+    public void testGetNumberLines() {
+        assertEquals(35, javaCodeAnalyzer.getNumberLines(), 0);
+    }
 
     @Test
     public void testGetNumberBlankLines() {

@@ -12,7 +12,7 @@ public class CodeFileTest {
 
     @Before
     public void createCodeFile() {
-        codeFile = new CodeFile("."+File.separator+"test"+File.separator+"TestFiles"+File.separator+"CodeFile1.java");
+        codeFile = new CodeFile("." + File.separator + "test" + File.separator + "TestFiles" + File.separator + "CodeFile1.java");
     }
 
     @Test

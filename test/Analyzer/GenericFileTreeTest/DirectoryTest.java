@@ -16,7 +16,7 @@ public class DirectoryTest {
     @Before
     public void createDirectory() {
         try {
-            directory = (Directory) FileAnalyzer.createDirectoryTree("."+File.separator+"test"+File.separator+"TestFiles");
+            directory = (Directory) FileAnalyzer.createDirectoryTree("." + File.separator + "test" + File.separator + "TestFiles");
         } catch (IOException ex) {
             assertFalse(true);
         }
@@ -51,10 +51,10 @@ public class DirectoryTest {
     public void testGetGenericFileChildren() {
         GenericFile[] fileList = directory.getGenericFileChildren();
         String[] pathList = new String[4];
-        pathList[0] = "."+File.separator+"test"+File.separator+"TestFiles"+File.separator+"CodeFile0.java";
-        pathList[1] = "."+File.separator+"test"+File.separator+"TestFiles"+File.separator+"CodeFile1.java";
-        pathList[2] = "."+File.separator+"test"+File.separator+"TestFiles"+File.separator+"CodeFile2.java";
-        pathList[3] = "."+File.separator+"test"+File.separator+"TestFiles"+File.separator+"Directory1";
+        pathList[0] = "." + File.separator + "test" + File.separator + "TestFiles" + File.separator + "CodeFile0.java";
+        pathList[1] = "." + File.separator + "test" + File.separator + "TestFiles" + File.separator + "CodeFile1.java";
+        pathList[2] = "." + File.separator + "test" + File.separator + "TestFiles" + File.separator + "CodeFile2.java";
+        pathList[3] = "." + File.separator + "test" + File.separator + "TestFiles" + File.separator + "Directory1";
         int i = 0;
         for (GenericFile child : fileList) {
             assertEquals(child.getPath(), pathList[i]);
