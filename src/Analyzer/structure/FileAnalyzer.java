@@ -1,8 +1,5 @@
-package codeanalyzer;
+package Analyzer.structure;
 
-import Analyzer.GenericFileTree.CodeFile;
-import Analyzer.GenericFileTree.Directory;
-import Analyzer.GenericFileTree.GenericFile;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;

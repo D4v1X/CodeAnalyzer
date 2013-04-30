@@ -8,11 +8,10 @@ package Analyzer.java.filters;
  *
  * @author davidsantiagobarrera
  */
-public class Line extends Filter{
+public class Line extends Filter {
 
     @Override
     public Boolean apply(String line) {
         return true;
     }
-    
 }

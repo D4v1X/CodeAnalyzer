@@ -1,4 +1,4 @@
-package Analyzer.GenericFileTree;
+package Analyzer.structure;
 
 public class CodeFile extends GenericFile {
 

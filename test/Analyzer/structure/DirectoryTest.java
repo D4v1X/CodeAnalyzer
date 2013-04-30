@@ -1,8 +1,5 @@
-package Analyzer.GenericFileTreeTest;
+package Analyzer.structure;
 
-import Analyzer.GenericFileTree.Directory;
-import Analyzer.GenericFileTree.GenericFile;
-import codeanalyzer.FileAnalyzer;
 import java.io.File;
 import java.io.IOException;
 import static org.junit.Assert.*;

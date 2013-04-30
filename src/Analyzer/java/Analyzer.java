@@ -1,10 +1,9 @@
 package Analyzer.java;
 
-import Analyzer.CodeAnalyzer;
 import Analyzer.FileUtils;
 import Analyzer.java.filters.Filter;
 
-public class Analyzer extends CodeAnalyzer {
+public class Analyzer {
 
     private final FileUtils codeFile;
 
