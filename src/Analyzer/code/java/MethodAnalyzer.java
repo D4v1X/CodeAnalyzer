@@ -1,4 +1,4 @@
-package Analyzer.java;
+package Analyzer.code.java;
 
 public class MethodAnalyzer extends Analyzer {
 

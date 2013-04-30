@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class CodeFile0 {
+public abstract class CodeFile0 {
 
     private final File javaText;
 

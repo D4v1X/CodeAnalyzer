@@ -1,5 +1,6 @@
 package Analyzer.java;
 
+import Analyzer.code.java.Analyzer;
 import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
@@ -46,5 +47,10 @@ public class AnalyzerTest {
     @Test
     public void testGetNumberPrivateClasses() {
         assertEquals(0, javaCodeAnalyzer.getNumberPrivateClasses(), 0);
+    }
+
+    @Test
+    public void testGetNumberAbstractClasses() {
+        assertEquals(1, javaCodeAnalyzer.getNumberAbstractClasses(), 0);
     }
 }

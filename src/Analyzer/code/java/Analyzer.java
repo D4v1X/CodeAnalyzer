@@ -1,7 +1,7 @@
-package Analyzer.java;
+package Analyzer.code.java;
 
-import Analyzer.FileUtils;
-import Analyzer.java.filters.Filter;
+import Analyzer.code.FileUtils;
+import Analyzer.code.java.filters.Filter;
 
 public class Analyzer {
 
@@ -43,6 +43,11 @@ public class Analyzer {
 
     public Integer getNumberPrivateClasses() {
         Filter[] filters = {Filter.PRIVATE, Filter.CLASS};
+        return Search(filters);
+    }
+
+    public Integer getNumberAbstractClasses() {
+        Filter[] filters = {Filter.ABSTRACT, Filter.CLASS};
         return Search(filters);
     }
 

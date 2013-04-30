@@ -1,4 +1,4 @@
-package Analyzer.java.filters;
+package Analyzer.code.java.filters;
 
 public abstract class Filter {
 
@@ -10,6 +10,7 @@ public abstract class Filter {
     public static final Class CLASS = new Class();
     public static final Public PUBLIC = new Public();
     public static final Line LINE = new Line();
+    public static final Abstract ABSTRACT = new Abstract();
 
     public abstract Boolean apply(String line);
 }

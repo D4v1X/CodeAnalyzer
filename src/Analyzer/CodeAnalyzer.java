@@ -1,4 +1,4 @@
-package codeanalyzer;
+package Analyzer;
 
 public class CodeAnalyzer {
 

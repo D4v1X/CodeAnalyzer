@@ -1,4 +1,4 @@
-package Analyzer.java.filters;
+package Analyzer.code.java.filters;
 
 public class Method extends Filter {
 
