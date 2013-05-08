@@ -1,6 +1,6 @@
 package codeanalyzer.ProjectComponents;
 
-public class MyMethod extends Component{
+public class MyMethod extends Component {
     
     private Integer cyclomaticComplexity;
     private Integer parametersNumber;

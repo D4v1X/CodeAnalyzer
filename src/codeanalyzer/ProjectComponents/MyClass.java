@@ -4,7 +4,7 @@ import codeanalyzer.ProjectComponents.MetricClass.Coupling;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MyClass extends Component{
+public class MyClass extends Component {
     
     private Integer numberAttributes;
     private Coupling coupling;
