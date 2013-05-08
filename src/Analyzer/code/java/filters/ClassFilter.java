@@ -1,9 +1,9 @@
 package Analyzer.code.java.filters;
 
-public class Empty extends Filter {
+public class ClassFilter extends Filter {
 
     @Override
     public Boolean apply(String line) {
-        return line.isEmpty();
+        return line.contains("class");
     }
 }

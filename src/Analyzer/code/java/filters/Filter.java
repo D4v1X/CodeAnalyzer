@@ -2,15 +2,15 @@ package Analyzer.code.java.filters;
 
 public abstract class Filter {
 
-    public static final Import IMPORT = new Import();
-    public static final Package PACKAGE = new Package();
-    public static final Method METHOD = new Method();
-    public static final Empty EMPTY = new Empty();
-    public static final Private PRIVATE = new Private();
-    public static final Class CLASS = new Class();
-    public static final Public PUBLIC = new Public();
-    public static final Line LINE = new Line();
-    public static final Abstract ABSTRACT = new Abstract();
+    public static final ImportFilter IMPORT = new ImportFilter();
+    public static final PackageFilter PACKAGE = new PackageFilter();
+    public static final MethodFilter METHOD = new MethodFilter();
+    public static final EmptyFilter EMPTY = new EmptyFilter();
+    public static final PrivateFilter PRIVATE = new PrivateFilter();
+    public static final ClassFilter CLASS = new ClassFilter();
+    public static final PublicFilter PUBLIC = new PublicFilter();
+    public static final LineFilter LINE = new LineFilter();
+    public static final AbstractFilter ABSTRACT = new AbstractFilter();
 
     public abstract Boolean apply(String line);
 }

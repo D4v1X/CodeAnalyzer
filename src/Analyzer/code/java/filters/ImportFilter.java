@@ -1,9 +1,9 @@
 package Analyzer.code.java.filters;
 
-public class Package extends Filter {
+public class ImportFilter extends Filter {
 
     @Override
     public Boolean apply(String line) {
-        return line.contains("package");
+        return line.contains("import");
     }
 }

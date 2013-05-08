@@ -1,6 +1,6 @@
 package Analyzer.code.java.filters;
 
-public class Method extends Filter {
+public class MethodFilter extends Filter {
 
     @Override
     public Boolean apply(String line) {

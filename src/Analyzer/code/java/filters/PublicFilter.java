@@ -1,9 +1,9 @@
 package Analyzer.code.java.filters;
 
-public class Private extends Filter {
+public class PublicFilter extends Filter {
 
     @Override
     public Boolean apply(String line) {
-        return line.contains("private");
+        return line.contains("public");
     }
 }
