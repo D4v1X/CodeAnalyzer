@@ -1,11 +1,11 @@
-package codeanalyzer.ProjectComponents;
+package Analyzer.code.java.component;
 
-import codeanalyzer.ProjectComponents.MetricClass.Coupling;
+import Analyzer.code.java.metrics.Coupling;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MyClass extends Component {
-    
+
     private Integer numberAttributes;
     private Coupling coupling;
     private List<MyMethod> myMethodList;
@@ -28,7 +28,7 @@ public class MyClass extends Component {
     public MyMethod[] getMyMethodList() {
         return myMethodList.toArray(new MyMethod[myMethodList.size()]);
     }
-    
+
     public void addMyMethod(MyMethod myMethod) {
         this.myMethodList.add(myMethod);
     }
@@ -48,5 +48,4 @@ public class MyClass extends Component {
     public void setEfferentCoupling(Integer efferentCoupling) {
         coupling.setEfferentCoupling(efferentCoupling);
     }
-    
-} 
+}

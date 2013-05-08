@@ -1,10 +1,10 @@
-package codeanalyzer.ProjectComponents;
+package Analyzer.code.java.component;
 
 public class MyMethod extends Component {
-    
+
     private Integer cyclomaticComplexity;
     private Integer parametersNumber;
-    
+
     public MyMethod(String name) {
         super(name);
     }
@@ -16,13 +16,12 @@ public class MyMethod extends Component {
     public Integer getCyclomaticComplexity() {
         return cyclomaticComplexity;
     }
-    
+
     public void setParemetersNumber(Integer parametersNumber) {
         this.parametersNumber = parametersNumber;
     }
-    
+
     public Integer getParametersNumber() {
         return parametersNumber;
     }
-    
 }

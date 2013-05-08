@@ -1,10 +1,11 @@
-package codeanalyzer.ProjectComponents.MetricClass;
+package Analyzer.code.java.metrics;
 
 public class CodeLines {
+
     private Integer blankLines;
     private Integer commentLines;
     private Integer effectiveLines;
-    
+
     public CodeLines() {
         this.blankLines = 0;
         this.commentLines = 0;
@@ -34,5 +35,4 @@ public class CodeLines {
     public void setEffectiveLines(Integer effectiveLines) {
         this.effectiveLines = effectiveLines;
     }
-    
 }

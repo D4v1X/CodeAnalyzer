@@ -1,7 +1,7 @@
-package codeanalyzer.ProjectComponents.MetricClass;
+package Analyzer.code.java.metrics;
 
 public class Coupling {
-    
+
     private Integer afferentCoupling;
     private Integer efferentCoupling;
 
@@ -25,5 +25,4 @@ public class Coupling {
     public void setEfferentCoupling(Integer efferentCoupling) {
         this.efferentCoupling = efferentCoupling;
     }
-    
 }

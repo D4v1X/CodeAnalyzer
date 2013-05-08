@@ -1,12 +1,12 @@
-package codeanalyzer.ProjectComponents;
+package Analyzer.code.java.component;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MyPackage {
-    
+
     private List<MyClass> myClassList;
-    
+
     public MyPackage() {
         myClassList = new ArrayList<>();
     }
@@ -14,15 +14,15 @@ public class MyPackage {
     public MyClass[] getClassList() {
         return myClassList.toArray(new MyClass[myClassList.size()]);
     }
-    
+
     public void addMyClass(MyClass myClass) {
         myClassList.add(myClass);
     }
-    
+
     public Integer getClassNumber() {
         return myClassList.size();
     }
-    
+
     public Integer getTotalCodeLines() {
         Integer totalCodeLines = 0;
         for (MyClass myClass : getClassList()) {
@@ -30,5 +30,4 @@ public class MyPackage {
         }
         return totalCodeLines;
     }
-    
 }
