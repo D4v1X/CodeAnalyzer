@@ -1,6 +1,7 @@
 package codeanalyzer.ProjectComponents.MetricClass;
 
 public class CodeLines {
+    
     private Integer blankLines;
     private Integer commentLines;
     private Integer effectiveLines;
