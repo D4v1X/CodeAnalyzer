@@ -1,73 +1,33 @@
 package Analyzer.code.java;
 
-import Analyzer.code.FileUtils;
-import Analyzer.code.java.filters.Filter;
+import Analyzer.code.java.metrics.Metrics;
+import Analyzer.code.java.metrics.MetricsAnalyzer;
+import Analyzer.structure.Directory;
+import Analyzer.structure.FileAnalyzer;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Analyzer {
 
-    private final FileUtils codeFile;
+    private final String path;
 
     public Analyzer(String javaText) {
-        this.codeFile = new FileUtils(javaText);
+        this.path = javaText;
     }
 
-    public Integer getNumberLines() {
-        Filter[] filters = {Filter.LINE};
-        return Search(filters);
-    }
-
-    public Integer getNumberBlankLines() {
-        Filter[] filters = {Filter.EMPTY};
-        return Search(filters);
-    }
-
-    public Integer getNumberMethods() {
-        Filter[] filters = {Filter.METHOD};
-        return Search(filters);
-    }
-
-    public Integer getNumberImports() {
-        Filter[] filters = {Filter.IMPORT};
-        return Search(filters);
-    }
-
-    public Integer getNumberPackages() {
-        Filter[] filters = {Filter.PACKAGE};
-        return Search(filters);
-    }
-
-    public Integer getNumberPublicClasses() {
-        Filter[] filters = {Filter.PUBLIC, Filter.CLASS};
-        return Search(filters);
-    }
-
-    public Integer getNumberPrivateClasses() {
-        Filter[] filters = {Filter.PRIVATE, Filter.CLASS};
-        return Search(filters);
-    }
-
-    public Integer getNumberAbstractClasses() {
-        Filter[] filters = {Filter.ABSTRACT, Filter.CLASS};
-        return Search(filters);
-    }
-
-    private Integer Search(Filter[] filters) {
-        Integer numberOcurrences = 0;
-        codeFile.open();
-        String line = codeFile.getLine();
-        while (line != null) {
-            Integer trues = 0;
-            for (Filter filter : filters) {
-                if (filter.apply(line)) {
-                    trues++;
-                }
-            }
-            if (trues == filters.length) {
-                numberOcurrences++;
-            }
-            line = codeFile.getLine();
+    public void start() {
+        try {
+            //TODO Estructura
+            Directory rootDirectory = (Directory) FileAnalyzer.createDirectoryTree(path);
+            //TODO Repartidor de trabajao - ControllerParse(fichero, array)
+            Metrics rootMetrics = MetricsAnalyzer.createDirectoryTree(rootDirectory);
+            //Devolver lo guardado en memoria.
+            //rootMetrics.calculate();
+            //Devolver lo guardado en memoria.
+            //rootMetrics.saveCube();
+        } catch (IOException ex) {
+            Logger.getLogger(Analyzer.class.getName()).log(Level.SEVERE, null, ex);
         }
-        codeFile.close();
-        return numberOcurrences;
     }
 }

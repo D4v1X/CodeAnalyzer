@@ -1,12 +1,18 @@
-package Analyzer.code.java.component;
+package Analyzer.code.java.metrics;
 
-public class MyMethod extends Component {
+public class MethodMetrics extends Metrics {
 
     private Integer cyclomaticComplexity;
     private Integer parametersNumber;
+    private String[] codeMethod;
 
-    public MyMethod(String name) {
+    public MethodMetrics(String name) {
         super(name);
+    }
+
+    public MethodMetrics(String nameClass, String[] codeMethod) {
+        this(nameClass);
+        this.codeMethod = codeMethod;
     }
 
     public void setCyclomaticComplexity(Integer cyclomaticComplexity) {
@@ -23,5 +29,9 @@ public class MyMethod extends Component {
 
     public Integer getParametersNumber() {
         return parametersNumber;
+    }
+
+    public String[] getCodeMethod() {
+        return codeMethod;
     }
 }

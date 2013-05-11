@@ -12,18 +12,18 @@ public class FileAnalyzer {
             throw new FileNotFoundException();
         }
         Directory directory = new Directory(file.getPath());
-        for (File fileIterator : file.listFiles()) {
-            childrenSelector(fileIterator, directory);
+        for (File fileActual : file.listFiles()) {
+            childrenSelector(fileActual, directory);
         }
         return directory;
     }
 
-    private static void childrenSelector(File fileIterator, Directory directory) throws IOException {
-        if (fileIterator.isDirectory()) {
-            directory.addGenericFileChild(FileAnalyzer.createDirectoryTree(fileIterator.getPath()));
+    private static void childrenSelector(File fileActual, Directory directory) throws IOException {
+        if (fileActual.isDirectory()) {
+            directory.addGenericFileChild(FileAnalyzer.createDirectoryTree(fileActual.getPath()));
         }
-        if (fileIterator.getName().endsWith(".java")) {
-            directory.addGenericFileChild(new CodeFile(fileIterator.getPath()));
+        if (fileActual.getName().endsWith(".java")) {
+            directory.addGenericFileChild(new CodeFile(fileActual.getPath()));
         }
     }
 }

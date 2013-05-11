@@ -1,4 +1,4 @@
-package Analyzer.code.java.metrics;
+package Analyzer.code.java.metrics.indicators;
 
 public class CodeLines {
 

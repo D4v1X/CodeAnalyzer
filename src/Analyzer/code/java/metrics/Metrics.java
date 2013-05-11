@@ -1,13 +1,13 @@
-package Analyzer.code.java.component;
+package Analyzer.code.java.metrics;
 
-import Analyzer.code.java.metrics.CodeLines;
+import Analyzer.code.java.metrics.indicators.CodeLines;
 
-public abstract class Component {
+public abstract class Metrics {
 
     private String name;
     private CodeLines codeLines;
 
-    public Component(String name) {
+    public Metrics(String name) {
         this.name = name;
     }
 
@@ -36,4 +36,6 @@ public abstract class Component {
     public Integer getTotalCodeLines() {
         return codeLines.getBlankLines() + codeLines.getCommentLines() + codeLines.getEffectiveLines();
     }
+    //public abstract void calculate();
+    //public abstract void saveCube();
 }

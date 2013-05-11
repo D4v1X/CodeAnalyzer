@@ -5,23 +5,38 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-public class FileUtils {
+public class FileLoader {
 
     private BufferedReader bufferCodeLine;
     private File codeFile;
     private FileReader fileReader;
-    private final String code;
+    private final String path;
 
-    public FileUtils(String code) {
-        this.code = code;
+    public FileLoader(String path) {
+        this.path = path;
     }
 
-    public Boolean open() {
+    public String[] toArray() {
+        String line;
+        ArrayList<String> code = new ArrayList<>();
+        if (open()) {
+            line = getLine();
+            while (line != null) {
+                code.add(line);
+                line = getLine();
+            }
+            close();
+        }
+        return code.toArray(new String[code.size()]);
+    }
+
+    private Boolean open() {
         try {
-            codeFile = new File(code);
+            codeFile = new File(path);
             fileReader = new FileReader(codeFile);
             bufferCodeLine = new BufferedReader(fileReader);
         } catch (IOException ex) {
@@ -31,7 +46,7 @@ public class FileUtils {
         return true;
     }
 
-    public String getLine() {
+    private String getLine() {
         String line = null;
         try {
             line = bufferCodeLine.readLine();
@@ -41,7 +56,7 @@ public class FileUtils {
         return line;
     }
 
-    public Boolean close() {
+    private Boolean close() {
         try {
             fileReader.close();
             bufferCodeLine.close();

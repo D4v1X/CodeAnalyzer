@@ -17,5 +17,4 @@ public class FileAnalyzerTest {
             assertFalse(true);
         }
     }
-    String ristra = ("hola");
 }
