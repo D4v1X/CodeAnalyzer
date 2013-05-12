@@ -2,7 +2,6 @@ package Analyzer.code.java.parse;
 
 import Analyzer.code.FileLoader;
 import Analyzer.code.java.metrics.ClassMetrics;
-import Analyzer.code.java.metrics.MethodMetrics;
 import Analyzer.code.java.metrics.Metrics;
 import java.io.File;
 import static org.junit.Assert.*;
@@ -32,7 +31,7 @@ public class CodeParseTest {
         assertEquals(1, codeComplex.getMetricsListSize(), 0);
         Metrics[] m= codeComplex.getMetricsList();
         ClassMetrics cm =  (ClassMetrics) m[0];
-        assertEquals(2, cm.getMethodMetricsListSize(),0);
+        assertEquals(3, cm.getMethodMetricsListSize(),0);
     }
 
     @Test

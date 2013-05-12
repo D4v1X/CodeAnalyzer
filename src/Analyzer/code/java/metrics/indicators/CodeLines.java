@@ -20,6 +20,10 @@ public class CodeLines {
         this.blankLines = blankLines;
     }
 
+    public void increaseBlankLines() {
+        this.blankLines++;
+    }
+
     public Integer getCommentLines() {
         return commentLines;
     }
@@ -28,11 +32,23 @@ public class CodeLines {
         this.commentLines = commentLines;
     }
 
+    public void increaseCommentLines() {
+        this.commentLines++;
+    }
+
     public Integer getEffectiveLines() {
         return effectiveLines;
     }
 
     public void setEffectiveLines(Integer effectiveLines) {
         this.effectiveLines = effectiveLines;
+    }
+
+    public void increaseEffectiveLines() {
+        this.effectiveLines++;
+    }
+    
+    public Integer getAllLines(){
+        return effectiveLines + blankLines + commentLines;
     }
 }

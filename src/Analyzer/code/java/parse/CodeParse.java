@@ -112,7 +112,7 @@ public class CodeParse {
                                 bracesMethod--;
                             }
                         }
-                        MethodMetrics methodMetrics = new MethodMetrics(fullNameMethod, pieceofcode.toArray(new String[pieceofcode.size()]));
+                        MethodMetrics methodMetrics = new MethodMetrics(fullNameMethod, pieceofcodeMethod.toArray(new String[pieceofcodeMethod.size()]));
                         classMetrics.addMethodMetrics(methodMetrics);
                     }
                 }

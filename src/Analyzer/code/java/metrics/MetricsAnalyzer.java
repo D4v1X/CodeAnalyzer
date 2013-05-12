@@ -20,8 +20,8 @@ public class MetricsAnalyzer {
             rootpackageMetrics.addMetrics(MetricsAnalyzer.createDirectoryTree((Directory) fileActual));
         }
         if (fileActual.isCodeFile()) {
-            FileLoader fileUtils = new FileLoader(fileActual.getPath());
-            CodeParse code = new CodeParse(fileUtils.toArray());
+            FileLoader fileLoader = new FileLoader(fileActual.getPath());
+            CodeParse code = new CodeParse(fileLoader.toArray());
             code.splitCode();
             Metrics[] metrics = code.getMetricsList();
             for (Metrics m : metrics) {

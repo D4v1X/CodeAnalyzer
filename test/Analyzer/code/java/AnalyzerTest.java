@@ -13,12 +13,6 @@ public class AnalyzerTest {
         javaAnalyzer = new Analyzer("./test/TestFiles");
     }
 
-    @Test
-    public void testAlert() {
-        //javaAnalyzer.start();
-        // TODO Hacer los Tests que faltan
-        fail("Hacer los Tests que faltan");
-    }
 
     @Test
     public void testStart() {

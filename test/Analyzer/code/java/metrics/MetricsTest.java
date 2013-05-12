@@ -8,12 +8,7 @@ public class MetricsTest {
     public MetricsTest() {
     }
 
-    @Test
-    public void testAlert() {
-        // TODO Hacer los Tests que faltan
-        fail("Hacer los Tests que faltane.");
-    }
-
+    // TODO Hacer los Tests que faltan
     @Test
     public void testGetName() {
     }

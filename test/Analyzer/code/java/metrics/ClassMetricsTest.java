@@ -8,12 +8,7 @@ public class ClassMetricsTest {
     public ClassMetricsTest() {
     }
 
-    @Test
-    public void testAlert() {
-        // TODO Hacer los Tests
-        fail("Hacer los Tests que faltan");
-    }
-
+    // TODO Hacer los Tests
     @Test
     public void testGetNumberAttributes() {
     }

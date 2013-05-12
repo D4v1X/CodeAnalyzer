@@ -31,7 +31,7 @@ public class DirectoryTest {
 
     @Test
     public void testGetChildrenQuantity() {
-        assertEquals(4, directory.getChildrenQuantity(), 0);
+        assertEquals(5, directory.getChildrenQuantity(), 0);
     }
 
     @Test
@@ -41,17 +41,18 @@ public class DirectoryTest {
 
     @Test
     public void testGetCodeFileChildrenQuantity() {
-        assertEquals(3, directory.getCodeFileChildrenQuantity(), 0);
+        assertEquals(4, directory.getCodeFileChildrenQuantity(), 0);
     }
 
     @Test
     public void testGetGenericFileChildren() {
         GenericFile[] fileList = directory.getGenericFileChildren();
-        String[] pathList = new String[4];
+        String[] pathList = new String[5];
         pathList[0] = "." + File.separator + "test" + File.separator + "TestFiles" + File.separator + "CodeFile0.java";
         pathList[1] = "." + File.separator + "test" + File.separator + "TestFiles" + File.separator + "CodeFile1.java";
         pathList[2] = "." + File.separator + "test" + File.separator + "TestFiles" + File.separator + "CodeFile2.java";
-        pathList[3] = "." + File.separator + "test" + File.separator + "TestFiles" + File.separator + "Directory1";
+        pathList[3] = "." + File.separator + "test" + File.separator + "TestFiles" + File.separator + "CodeFile3.java";
+        pathList[4] = "." + File.separator + "test" + File.separator + "TestFiles" + File.separator + "Directory1";
         int i = 0;
         for (GenericFile child : fileList) {
             assertEquals(child.getPath(), pathList[i]);

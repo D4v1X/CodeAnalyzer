@@ -8,12 +8,7 @@ public class MetricsAnalyzerTest {
     public MetricsAnalyzerTest() {
     }
 
-    @Test
-    public void testAlert() {
-        // TODO Hacer los Tests que faltan
-        fail("Hacer los Tests que faltan");
-    }
-
+    // TODO Hacer los Tests que faltan
     @Test
     public void testCreateDirectoryTree() {
     }

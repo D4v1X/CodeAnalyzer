@@ -6,12 +6,7 @@ import org.junit.Test;
 
 public class FileLoaderTest {
 
-    @Test
-    public void testAlert() {
-        // TODO Hacer los Tests que faltan
-        fail("Hacer los Tests que faltan");
-    }
-
+    // TODO Hacer los Tests que faltan
     @Test
     public void testToArray() {
         FileLoader fileUtils = new FileLoader("." + File.separator + "test" + File.separator + "TestFiles" + File.separator + "CodeFile1.java");
