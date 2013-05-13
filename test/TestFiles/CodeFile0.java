@@ -4,10 +4,12 @@
  */
 package TestFiles;
 
+import Analyzer.code.java.metrics.calculator.MethodMetricsCalculator;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -18,6 +20,8 @@ import java.util.logging.Logger;
 public abstract class CodeFile0 {
 
     private final File javaText;
+    //private List<MethodMetricsCalculator> methodMetricsComment;
+    private List<MethodMetricsCalculator> methodMetricsCalculatorList;
 
     public CodeFile0(String javaText) {
         this.javaText = new File(javaText);
