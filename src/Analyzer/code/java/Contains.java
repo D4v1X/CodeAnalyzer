@@ -3,23 +3,21 @@ package Analyzer.code.java;
 public class Contains {
 
     public static Boolean Package(String line) {
-        return line.contains("package");
+        return Filter(line, "[ ]", "package");
     }
 
     public static Boolean Import(String line) {
-        return line.contains("import");
+        return Filter(line, "[ ]", "import");
     }
 
     public static Boolean Interface(String line) {
-        return line.contains("interface");
+        return Filter(line, "[ ]", "interface");
     }
 
-    public static Boolean Method(String line, String simpleNameClass) {
-        return Function(line) && (!line.contains(simpleNameClass));
-    }
-
-    public static Boolean Constructor(String line, String simpleNameClass) {
-        return Function(line) && (line.contains(simpleNameClass));
+    public static Boolean Method(String line, String FullNameClass) {
+        String[] tokens = FullNameClass.split("[()]");
+        String[] simpleName = tokens[0].split("[.]");
+        return (Function(line) && (!Filter(line,"[() ]",simpleName[simpleName.length - 1])));
     }
 
     public static Boolean Function(String line) {
@@ -27,7 +25,7 @@ public class Contains {
     }
 
     public static Boolean Class(String line) {
-        return line.contains("class");
+        return Filter(line, "[ ]", "class");
     }
 
     public static Boolean SemiColon(String line) {
@@ -35,16 +33,16 @@ public class Contains {
     }
 
     public static Boolean Atribute(String line, String attribute) {
-        return line.contains(attribute);
+        return Filter(line, "[(); ]", attribute);
     }
 
-    public static boolean openBrace(String line) {
-        return line.contains("{");
+    private static Boolean Filter(String line, String delimiter, String key) {
+        String[] tokens = line.split(delimiter);
+        for (String token : tokens) {
+            if (token.contentEquals(key)) {
+                return true;
+            }
+        }
+        return false;
     }
-
-    public static boolean closeBrace(String line) {
-        return line.contains("}");
-    }
-    //TODO
-    //Split and Verify tokens para corregir subristras
 }
