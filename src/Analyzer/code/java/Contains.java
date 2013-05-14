@@ -37,6 +37,14 @@ public class Contains {
     public static Boolean Atribute(String line, String attribute) {
         return line.contains(attribute);
     }
+
+    public static boolean openBrace(String line) {
+        return line.contains("{");
+    }
+
+    public static boolean closeBrace(String line) {
+        return line.contains("}");
+    }
     //TODO
     //Split and Verify tokens para corregir subristras
 }

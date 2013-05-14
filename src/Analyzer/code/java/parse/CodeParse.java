@@ -1,5 +1,6 @@
 package Analyzer.code.java.parse;
 
+import Analyzer.code.java.Contains;
 import Analyzer.code.java.metrics.ClassMetrics;
 import Analyzer.code.java.metrics.MethodMetrics;
 import Analyzer.code.java.metrics.Metrics;
@@ -143,8 +144,8 @@ public class CodeParse {
             if (isPackage(line)) {
                 fullNamePackage = getFullNamePackage(line);
             }
-
-            if (isClass(line)) {
+            
+            if(Contains.Class(line)){
                 bracesClass = 1;
                 fullNameClass = getFullNameClass(line, fullNamePackage);
                 simpleNameClass = getSimpleNameClass(line);
@@ -154,14 +155,13 @@ public class CodeParse {
                 while (bracesClass > 0) {
                     line = nextLine();
                     pieceofcode.add(line);
-                    if (line.contains("{")) {
+                    if(Contains.openBrace(line)){
                         bracesClass++;
                     }
-                    if (line.contains("}")) {
+                    if(Contains.closeBrace(line)){
                         bracesClass--;
                     }
-
-                    if (isMethod(line, simpleNameClass)) {
+                    if(Contains.Method(line, simpleNameClass)){
                         bracesClass--;
                         bracesMethod = 1;
                         fullNameMethod = getFullNameMethod(line, fullNameClass);
@@ -170,10 +170,10 @@ public class CodeParse {
                         while (bracesMethod > 0) {
                             line = nextLine();
                             pieceofcodeMethod.add(line);
-                            if (line.contains("{")) {
+                            if(Contains.openBrace(line)){
                                 bracesMethod++;
                             }
-                            if (line.contains("}")) {
+                            if(Contains.closeBrace(line)){
                                 bracesMethod--;
                             }
                         }
@@ -192,20 +192,8 @@ public class CodeParse {
         return line.contains("package");
     }
 
-    private boolean isImport(String line) {
-        return line.contains("import");
-    }
-
-    private boolean isInterface(String line) {
-        return line.contains("interface");
-    }
-
     private boolean isMethod(String line, String simpleNameClass) {
         return isFunction(line) && (!line.contains(simpleNameClass));
-    }
-
-    private boolean isConstructor(String line, String simpleNameClass) {
-        return isFunction(line) && (line.contains(simpleNameClass));
     }
 
     private boolean isFunction(String line) {
