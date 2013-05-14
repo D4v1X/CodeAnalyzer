@@ -17,7 +17,7 @@ public class Contains {
     public static Boolean Method(String line, String FullNameClass) {
         String[] tokens = FullNameClass.split("[()]");
         String[] simpleName = tokens[0].split("[.]");
-        return (Function(line) && (!Filter(line,"[() ]",simpleName[simpleName.length - 1])));
+        return (Function(line) && (!Filter(line, "[() ]", simpleName[simpleName.length - 1])));
     }
 
     public static Boolean Function(String line) {
@@ -34,6 +34,14 @@ public class Contains {
 
     public static Boolean Atribute(String line, String attribute) {
         return Filter(line, "[(); ]", attribute);
+    }
+
+    public static boolean openBrace(String line) {
+        return line.contains("{");
+    }
+
+    public static boolean closeBrace(String line) {
+        return line.contains("}");
     }
 
     private static Boolean Filter(String line, String delimiter, String key) {
