@@ -39,7 +39,7 @@ public class HeadCodeMetricsCalculator extends CodeMetricsCalculator {
         }
     }
 
-    public Integer getLibraryList() {
+    public Integer getLibraryDependency() {
         String[] tokens;
         for (String line : code) {
             if (Contains.Import(line)) {
