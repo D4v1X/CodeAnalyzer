@@ -51,4 +51,10 @@ public class CodeLines {
     public Integer getAllLines() {
         return effectiveLines + blankLines + commentLines;
     }
+
+    public void addLines(CodeLines codeLines) {
+        this.blankLines += codeLines.getBlankLines();
+        this.commentLines += codeLines.getCommentLines();
+        this.effectiveLines += codeLines.getEffectiveLines();
+    }
 }

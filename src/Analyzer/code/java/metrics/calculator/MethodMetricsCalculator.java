@@ -1,5 +1,6 @@
 package Analyzer.code.java.metrics.calculator;
 
+import Analyzer.code.LineType;
 import Analyzer.code.java.Contains;
 
 public class MethodMetricsCalculator extends CodeMetricsCalculator {
@@ -18,6 +19,7 @@ public class MethodMetricsCalculator extends CodeMetricsCalculator {
         return tokens.length;
     }
 //TODO Constains implement
+
     public Integer getCyclomaticComplexity() {
         Integer cyclomaticComplexit = 0;
         Integer numberLine = 0;

@@ -15,8 +15,7 @@ public class ClassMetricsCalculatorTest {
         CodeParse codeParse = new CodeParse(fileLoader.toArray());
         codeParse.splitCodev2();
         MetricsCalculator[] metricsCalculators = codeParse.getMetricsCalculatorsList();
-        codeTest = (ClassMetricsCalculator) metricsCalculators[0];
-
+        codeTest = (ClassMetricsCalculator) metricsCalculators[1];
     }
 
 // TODO Hacer Test que faltan

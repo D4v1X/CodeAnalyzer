@@ -1,5 +1,6 @@
 package Analyzer.code.java.metrics.calculator;
 
+import Analyzer.code.LineType;
 import Analyzer.code.java.metrics.indicators.CodeLines;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -46,6 +47,7 @@ public class CodeMetricsCalculator extends MetricsCalculator {
         }
     }
 
+    @Override
     public CodeLines getCodeLines() {
         CodeLines lines = new CodeLines();
         for (int i = 1; i <= code.size(); i++) {

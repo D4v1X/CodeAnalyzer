@@ -5,6 +5,7 @@ import Analyzer.code.java.metrics.ClassMetrics;
 import Analyzer.code.java.metrics.MethodMetrics;
 import Analyzer.code.java.metrics.Metrics;
 import Analyzer.code.java.metrics.calculator.ClassMetricsCalculator;
+import Analyzer.code.java.metrics.calculator.HeadCodeMetricsCalculator;
 import Analyzer.code.java.metrics.calculator.MethodMetricsCalculator;
 import Analyzer.code.java.metrics.calculator.MetricsCalculator;
 import java.util.ArrayList;
@@ -77,7 +78,6 @@ public class CodeParse {
         String fullNameClass, simpleNameClass;
         ArrayList<String> pieceofcode = new ArrayList<>();
         ArrayList<String> pieceofcodeMethod = new ArrayList<>();
-
         while (position < code.length) {
             line = nextLine();
 
@@ -133,19 +133,24 @@ public class CodeParse {
         position = 0;
         String line;
         ClassMetricsCalculator classMetricsCalculator;
+        HeadCodeMetricsCalculator headCodeMetricsCalculator;
         String fullNamePackage = null, fullNameMethod;
         String fullNameClass, simpleNameClass;
+        ArrayList<String> headCode = new ArrayList<>();
         ArrayList<String> pieceofcode = new ArrayList<>();
         ArrayList<String> pieceofcodeMethod = new ArrayList<>();
-
+        Boolean isHead = true;
         while (position < code.length) {
             line = nextLine();
-
-            if (isPackage(line)) {
+            if (Contains.Package(line)) {
                 fullNamePackage = getFullNamePackage(line);
             }
-            
-            if(Contains.Class(line)){
+            if (isHead) {
+                headCode.add(line);
+            }
+            if (Contains.Class(line)) {
+                isHead = false;
+                headCodeMetricsCalculator = new HeadCodeMetricsCalculator(headCode.toArray(new String[headCode.size()]));
                 bracesClass = 1;
                 fullNameClass = getFullNameClass(line, fullNamePackage);
                 simpleNameClass = getSimpleNameClass(line);
@@ -155,13 +160,13 @@ public class CodeParse {
                 while (bracesClass > 0) {
                     line = nextLine();
                     pieceofcode.add(line);
-                    if(Contains.openBrace(line)){
+                    if (Contains.openBrace(line)) {
                         bracesClass++;
                     }
-                    if(Contains.closeBrace(line)){
+                    if (Contains.closeBrace(line)) {
                         bracesClass--;
                     }
-                    if(Contains.Method(line, simpleNameClass)){
+                    if (Contains.Method(line, simpleNameClass)) {
                         bracesClass--;
                         bracesMethod = 1;
                         fullNameMethod = getFullNameMethod(line, fullNameClass);
@@ -170,10 +175,10 @@ public class CodeParse {
                         while (bracesMethod > 0) {
                             line = nextLine();
                             pieceofcodeMethod.add(line);
-                            if(Contains.openBrace(line)){
+                            if (Contains.openBrace(line)) {
                                 bracesMethod++;
                             }
-                            if(Contains.closeBrace(line)){
+                            if (Contains.closeBrace(line)) {
                                 bracesMethod--;
                             }
                         }
@@ -182,6 +187,7 @@ public class CodeParse {
                     }
                 }
                 classMetricsCalculator.setCode(pieceofcode.toArray(new String[pieceofcode.size()]));
+                metricsCalculatorsList.add(headCodeMetricsCalculator);
                 metricsCalculatorsList.add(classMetricsCalculator);
             }
         }

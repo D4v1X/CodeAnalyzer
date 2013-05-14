@@ -1,7 +1,8 @@
 package Analyzer.code.java.metrics.calculator;
 
-public class MetricsCalculator {
+import Analyzer.code.java.metrics.indicators.CodeLines;
 
-    public MetricsCalculator() {
-    }
+public abstract class MetricsCalculator {
+
+    public abstract CodeLines getCodeLines();
 }

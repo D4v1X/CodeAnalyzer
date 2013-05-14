@@ -4,12 +4,15 @@
  */
 package TestFiles;
 
+import TestFiles.Directory1.CodeFile4;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.junit.Test;
+import static org.junit.Assert.*;
 
 /**
  *
@@ -44,6 +47,7 @@ public abstract class CodeFile0 {
 
     public Integer getNumberLines(Integer Prueba, String prueba2) {
         Integer NumberLines = 0;
+        CodeFile4 codeFile3 = new CodeFile4();
         try {
             BufferedReader file = new BufferedReader(new FileReader(javaText5));
             while (file.ready()) {

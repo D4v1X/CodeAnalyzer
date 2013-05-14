@@ -1,4 +1,4 @@
-package Analyzer.code.java.metrics.calculator;
+package Analyzer.code;
 
 public class LineType {
 

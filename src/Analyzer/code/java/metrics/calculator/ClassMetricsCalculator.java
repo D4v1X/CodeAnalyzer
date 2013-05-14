@@ -1,5 +1,6 @@
 package Analyzer.code.java.metrics.calculator;
 
+import Analyzer.code.LineType;
 import Analyzer.code.java.Contains;
 import java.util.ArrayList;
 import java.util.List;
