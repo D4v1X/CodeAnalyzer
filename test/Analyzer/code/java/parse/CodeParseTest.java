@@ -29,9 +29,9 @@ public class CodeParseTest {
     public void testSplitCodeComplex() {
         codeComplex.splitCode();
         assertEquals(1, codeComplex.getMetricsListSize(), 0);
-        Metrics[] m= codeComplex.getMetricsList();
-        ClassMetrics cm =  (ClassMetrics) m[0];
-        assertEquals(3, cm.getMethodMetricsListSize(),0);
+        Metrics[] m = codeComplex.getMetricsList();
+        ClassMetrics cm = (ClassMetrics) m[0];
+        assertEquals(5, cm.getMethodMetricsListSize(), 0);
     }
 
     @Test

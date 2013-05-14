@@ -8,8 +8,12 @@ import java.util.List;
 
 public class CodeMetricsCalculator extends MetricsCalculator {
 
-    protected final List<String> code;
+    protected List<String> code;
     protected HashMap<Integer, LineType> lineTypeTable;
+
+    public CodeMetricsCalculator() {
+        this.lineTypeTable = new HashMap<>();
+    }
 
     public CodeMetricsCalculator(String[] code) {
         this.code = new ArrayList<>(Arrays.asList(code));
@@ -58,5 +62,10 @@ public class CodeMetricsCalculator extends MetricsCalculator {
         } else {
             lines.increaseEffectiveLines();
         }
+    }
+
+    public void setCode(String[] codeArray) {
+        code = new ArrayList<>(Arrays.asList(codeArray));
+        initLineTypeTable();
     }
 }

@@ -1,5 +1,7 @@
 package Analyzer.code.java.metrics.calculator;
 
+import Analyzer.code.java.Contains;
+
 public class MethodMetricsCalculator extends CodeMetricsCalculator {
 
     public MethodMetricsCalculator(String[] code) {
@@ -68,5 +70,14 @@ public class MethodMetricsCalculator extends CodeMetricsCalculator {
 
         }
         return cyclomaticComplexit;
+    }
+
+    public Boolean isUsed(String attribute) {
+        for (String line : code) {
+            if (Contains.Atribute(line, attribute)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

@@ -29,8 +29,14 @@ public class Contains {
     public static Boolean Class(String line) {
         return line.contains("class");
     }
-    
-    public static Boolean SemiColon(String line){
+
+    public static Boolean SemiColon(String line) {
         return line.contains(";");
     }
+
+    public static Boolean Atribute(String line, String attribute) {
+        return line.contains(attribute);
+    }
+    //TODO
+    //Split and Verify tokens para corregir subristras
 }

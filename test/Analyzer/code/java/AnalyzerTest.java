@@ -13,7 +13,6 @@ public class AnalyzerTest {
         javaAnalyzer = new Analyzer("./test/TestFiles");
     }
 
-
     @Test
     public void testStart() {
         //TODO Hacer Test Start

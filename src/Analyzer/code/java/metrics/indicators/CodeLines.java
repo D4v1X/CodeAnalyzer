@@ -47,8 +47,8 @@ public class CodeLines {
     public void increaseEffectiveLines() {
         this.effectiveLines++;
     }
-    
-    public Integer getAllLines(){
+
+    public Integer getAllLines() {
         return effectiveLines + blankLines + commentLines;
     }
 }

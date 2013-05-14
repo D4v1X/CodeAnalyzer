@@ -69,7 +69,7 @@ public class MethodMetricsCalculatorTest {
         assertEquals(2, new MethodMetricsCalculator(codeTestList.get(2).getCodeMethod()).getNumberOfParameters(), 0);
     }
 
-        @Test
+    @Test
     public void testGetCyclomaticComplexitySimple() {
         initM();
         assertEquals(1, new MethodMetricsCalculator(codeTestList.get(1).getCodeMethod()).getCyclomaticComplexity(), 0);

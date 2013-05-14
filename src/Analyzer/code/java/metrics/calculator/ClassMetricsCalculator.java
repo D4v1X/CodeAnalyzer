@@ -9,6 +9,11 @@ public class ClassMetricsCalculator extends CodeMetricsCalculator {
     private List<MethodMetricsCalculator> methodMetricsCalculatorList;
     private List<String> attributeList;
 
+    public ClassMetricsCalculator() {
+        methodMetricsCalculatorList = new ArrayList<>();
+        attributeList = new ArrayList<>();
+    }
+
     public ClassMetricsCalculator(String[] code) {
         super(code);
         methodMetricsCalculatorList = new ArrayList<>();
@@ -41,6 +46,29 @@ public class ClassMetricsCalculator extends CodeMetricsCalculator {
         }
         return attributeList.size();
     }
-    
-    
+
+    public Double getLackOfCohesion() {
+        return calculateLOCM();
+    }
+
+    private Double calculateLOCM() {
+        Integer F = getNumberOfAttribute();
+        Integer M = getNumberOfMethod();
+        return 1 - (getSummationMF() / (M * F));
+    }
+
+    private Double getSummationMF() {
+        Double total = 0.0;
+        for (MethodMetricsCalculator method : methodMetricsCalculatorList) {
+            for (String attribute : attributeList) {
+                if (method.isUsed(attribute)) {
+                    total++;
+                }
+            }
+        }
+        return total;
+    }
+    //TODO Cread metrica de Dependencias
+    //Nota HashTable for Eferente(num import) (nombre de clase, numero de repeticiones)
+    //                   Aferente consultar Hashmap
 }
