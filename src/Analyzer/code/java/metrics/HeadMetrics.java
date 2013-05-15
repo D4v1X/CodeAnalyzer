@@ -4,15 +4,15 @@ import Analyzer.code.java.Contains;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HeadCodeMetrics extends CodeMetrics {
+public class HeadMetrics extends CodeMetrics {
 
     private List<String> importList;
     private List<String> libraryList;
     private String namePackage;
     private String rootNamePackage;
 
-    public HeadCodeMetrics(String[] code) {
-        super(code);
+    public HeadMetrics(String name, String[] code) {
+        super(name, code);
         this.importList = new ArrayList<>();
         this.libraryList = new ArrayList<>();
         extractNamePackage();
@@ -38,6 +38,7 @@ public class HeadCodeMetrics extends CodeMetrics {
             rootNamePackage = tokens[0];
         }
     }
+//Todo Fix
 
     public Integer getLibraryDependency() {
         String[] tokens;
@@ -55,5 +56,9 @@ public class HeadCodeMetrics extends CodeMetrics {
             }
         }
         return libraryList.size();
+    }
+
+    public String getNamePackage() {
+        return namePackage;
     }
 }

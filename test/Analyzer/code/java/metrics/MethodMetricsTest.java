@@ -24,22 +24,21 @@ public class MethodMetricsTest {
                 codeTestList = new ArrayList<>(Arrays.asList(((ClassMetrics) m).getMethodMetricsList()));
             }
         }
-        codeTest = new MethodMetrics(fileLoader.toArray());
     }
 
     @Test
     public void testGetCodeLinesComment() {
-        assertEquals(8, codeTest.getCodeLines().getCommentLines(), 0);
+        assertEquals(3, codeTestList.get(2).getCodeLines().getCommentLines(), 0);
     }
 
     @Test
     public void testGetCodeLinesBlank() {
-        assertEquals(9, codeTest.getCodeLines().getBlankLines(), 0);
+        assertEquals(2, codeTestList.get(2).getCodeLines().getBlankLines(), 0);
     }
 
     @Test
     public void testGetCodeLineseffective() {
-        assertEquals(56, codeTest.getCodeLines().getEffectiveLines(), 0);
+        assertEquals(15, codeTestList.get(2).getCodeLines().getEffectiveLines(), 0);
     }
 
     @Test

@@ -2,7 +2,7 @@ package Analyzer.code.java.parse;
 
 import Analyzer.code.java.Contains;
 import Analyzer.code.java.metrics.ClassMetrics;
-import Analyzer.code.java.metrics.HeadCodeMetrics;
+import Analyzer.code.java.metrics.HeadMetrics;
 import Analyzer.code.java.metrics.MethodMetrics;
 import Analyzer.code.java.metrics.Metrics;
 import java.util.ArrayList;
@@ -20,111 +20,27 @@ public class CodeParse {
     }
 
     private String nextLine() {
-        String line;
         if (code.length > position) {
-            line = code[position];
-            position++;
-            return line;
+            return code[position++];
         }
         return null;
     }
 
-    private Boolean isClass(String line) {
-        return line.contains("class");
-    }
-
-    public String getFullNameMethod(String line, String fullNameClass) {
-        String delims = "[()]";
-        String[] tokens = line.split(delims);
-        delims = "[ ]";
-        tokens = tokens[0].split(delims);
-        return fullNameClass.concat(".").concat(tokens[tokens.length - 1]);
-    }
-
-    public String getFullNameClass(String line, String fullNamePackage) {
-        return fullNamePackage.concat(".").concat(getSimpleNameClass(line));
-    }
-
-    public String getSimpleNameClass(String line) {
-        String delims = "[ ]";
-        String[] tokens = line.split(delims);
-        return tokens[tokens.length - 2];
-    }
-
-    public String getFullNamePackage(String line) {
-        String delims = "[ ;]";
-        String[] tokens = line.split(delims);
-        return tokens[1];
-    }
-
-    public String getSimpleNamePackage(String line) {
-        line = getSimpleNamePackage(line);
-        String delims = ".";
-        String[] tokens = line.split(delims);
-        return tokens[tokens.length - 1];
-    }
-
     public void splitCode() {
-        Integer bracesClass, bracesMethod;
         position = 0;
         String line;
-        ClassMetrics classMetricsCalculator;
-        HeadCodeMetrics headCodeMetricsCalculator;
-        String fullNamePackage = null, fullNameMethod;
-        String fullNameClass, simpleNameClass;
-        ArrayList<String> headCode = new ArrayList<>();
-        ArrayList<String> pieceofcode = new ArrayList<>();
-        ArrayList<String> pieceofcodeMethod = new ArrayList<>();
+        HeadMetrics headMetrics = null;
         Boolean isHead = true;
         while (position < code.length) {
             line = nextLine();
-            if (Contains.Package(line)) {
-                fullNamePackage = getFullNamePackage(line);
-            }
             if (isHead) {
-                headCode.add(line);
+                headMetrics = splitHead();
+                metricsList.add(headMetrics);
+                line = getCurrentLine();
             }
             if (Contains.Class(line)) {
                 isHead = false;
-                headCodeMetricsCalculator = new HeadCodeMetrics(headCode.toArray(new String[headCode.size()]));
-                bracesClass = 1;
-                fullNameClass = getFullNameClass(line, fullNamePackage);
-                simpleNameClass = getSimpleNameClass(line);
-                classMetricsCalculator = new ClassMetrics();
-                pieceofcode.clear();
-                pieceofcode.add(line);
-                while (bracesClass > 0) {
-                    line = nextLine();
-                    pieceofcode.add(line);
-                    if (Contains.openBrace(line)) {
-                        bracesClass++;
-                    }
-                    if (Contains.closeBrace(line)) {
-                        bracesClass--;
-                    }
-                    if (Contains.Method(line, simpleNameClass)) {
-                        bracesClass--;
-                        bracesMethod = 1;
-                        fullNameMethod = getFullNameMethod(line, fullNameClass);
-                        pieceofcodeMethod.clear();
-                        pieceofcodeMethod.add(line);
-                        while (bracesMethod > 0) {
-                            line = nextLine();
-                            pieceofcodeMethod.add(line);
-                            if (Contains.openBrace(line)) {
-                                bracesMethod++;
-                            }
-                            if (Contains.closeBrace(line)) {
-                                bracesMethod--;
-                            }
-                        }
-                        MethodMetrics methodMetricsCalculator = new MethodMetrics(pieceofcodeMethod.toArray(new String[pieceofcodeMethod.size()]));
-                        classMetricsCalculator.addMethod(methodMetricsCalculator);
-                    }
-                }
-                classMetricsCalculator.setCode(pieceofcode.toArray(new String[pieceofcode.size()]));
-                metricsList.add(headCodeMetricsCalculator);
-                metricsList.add(classMetricsCalculator);
+                metricsList.add(splitClass(headMetrics.getNamePackage()));
             }
         }
     }
@@ -135,5 +51,80 @@ public class CodeParse {
 
     public Metrics[] getMetricsList() {
         return metricsList.toArray(new Metrics[metricsList.size()]);
+    }
+
+    private MethodMetrics splitMethod(String fullNameClass) {
+        String line = getCurrentLine();
+        String fullNameMethod = getFullNameMethod(line, fullNameClass);
+        ArrayList<String> methodCode = new ArrayList<>();
+        int bracesMethod = 1;
+        methodCode.clear();
+        methodCode.add(line);
+        while (bracesMethod > 0) {
+            line = nextLine();
+            methodCode.add(line);
+            bracesMethod = manageBraces(line, bracesMethod);
+        }
+        return new MethodMetrics(fullNameMethod, methodCode.toArray(new String[methodCode.size()]));
+    }
+
+    private ClassMetrics splitClass(String fullNamePackage) {
+        String line = getCurrentLine();
+        ArrayList<String> classCode = new ArrayList<>();
+        int bracesClass = 1;
+        String fullNameClass = getFullNameClass(line, fullNamePackage);
+        ClassMetrics classMetrics = new ClassMetrics(fullNameClass);
+        classCode.clear();
+        classCode.add(line);
+        while (bracesClass > 0) {
+            line = nextLine();
+            classCode.add(line);
+            bracesClass = manageBraces(line, bracesClass);
+            if (Contains.Method(line, classMetrics.getSimpleName())) {
+                bracesClass--;
+                classMetrics.addMethod(splitMethod(fullNameClass));
+            }
+        }
+        classMetrics.setCode(classCode.toArray(new String[classCode.size()]));
+        return classMetrics;
+    }
+
+    private HeadMetrics splitHead() {
+        String line = getCurrentLine();
+        ArrayList<String> headCode = new ArrayList<>();
+        while (!Contains.Class(line)) {
+            headCode.add(line);
+            line = nextLine();
+        }
+        return new HeadMetrics("Head", headCode.toArray(new String[headCode.size()]));
+    }
+
+    private String getFullNameMethod(String line, String fullNameClass) {
+        String[] tokens = line.split("[()]");
+        tokens = tokens[0].split("[ ]");
+        return fullNameClass.concat(".").concat(tokens[tokens.length - 1]);
+    }
+
+    private String getFullNameClass(String line, String fullNamePackage) {
+        return fullNamePackage.concat(".").concat(getSimpleNameClass(line));
+    }
+
+    private String getSimpleNameClass(String line) {
+        String[] tokens = line.split("[ ]");
+        return tokens[tokens.length - 2];
+    }
+
+    private String getCurrentLine() {
+        return code[position - 1];
+    }
+
+    private Integer manageBraces(String line, int bracesClass) {
+        if (Contains.openBrace(line)) {
+            bracesClass++;
+        }
+        if (Contains.closeBrace(line)) {
+            bracesClass--;
+        }
+        return bracesClass;
     }
 }

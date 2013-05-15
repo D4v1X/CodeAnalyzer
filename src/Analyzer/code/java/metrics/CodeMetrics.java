@@ -11,14 +11,16 @@ public class CodeMetrics extends Metrics {
 
     protected List<String> code;
     protected HashMap<Integer, LineType> lineTypeTable;
+    protected String name;
 
-    public CodeMetrics() {
+    public CodeMetrics(String name) {
+        this.name = name;
         this.lineTypeTable = new HashMap<>();
     }
 
-    public CodeMetrics(String[] code) {
+    public CodeMetrics(String name, String[] code) {
+        this(name);
         this.code = new ArrayList<>(Arrays.asList(code));
-        this.lineTypeTable = new HashMap<>();
         initLineTypeTable();
     }
 
@@ -69,5 +71,14 @@ public class CodeMetrics extends Metrics {
     public void setCode(String[] codeArray) {
         code = new ArrayList<>(Arrays.asList(codeArray));
         initLineTypeTable();
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public String getSimpleName() {
+        String[] tokens = name.split("[.]");
+        return tokens[tokens.length - 1];
     }
 }

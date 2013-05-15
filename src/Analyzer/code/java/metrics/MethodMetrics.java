@@ -5,8 +5,12 @@ import Analyzer.code.java.Contains;
 
 public class MethodMetrics extends CodeMetrics {
 
-    public MethodMetrics(String[] code) {
-        super(code);
+    public MethodMetrics(String name) {
+        super(name);
+    }
+
+    public MethodMetrics(String name, String[] code) {
+        super(name, code);
     }
 
     public Integer getNumberOfParameters() {
@@ -18,7 +22,7 @@ public class MethodMetrics extends CodeMetrics {
         }
         return tokens.length;
     }
-//TODO Constains implement
+//TODO Fix if
 
     public Integer getCyclomaticComplexity() {
         Integer cyclomaticComplexit = 0;

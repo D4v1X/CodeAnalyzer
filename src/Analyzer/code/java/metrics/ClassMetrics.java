@@ -10,13 +10,14 @@ public class ClassMetrics extends CodeMetrics {
     private List<MethodMetrics> methodMetricsList;
     private List<String> attributeList;
 
-    public ClassMetrics() {
+    public ClassMetrics(String name) {
+        super(name);
         methodMetricsList = new ArrayList<>();
         attributeList = new ArrayList<>();
     }
 
-    public ClassMetrics(String[] code) {
-        super(code);
+    public ClassMetrics(String name, String[] code) {
+        super(name, code);
         methodMetricsList = new ArrayList<>();
         attributeList = new ArrayList<>();
     }

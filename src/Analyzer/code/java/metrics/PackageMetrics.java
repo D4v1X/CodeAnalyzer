@@ -7,7 +7,7 @@ import java.util.List;
 public class PackageMetrics extends Metrics {
 
     private List<ClassMetrics> classMetricsList;
-    private List<HeadCodeMetrics> headCodeMetricsList;
+    private List<HeadMetrics> headCodeMetricsList;
     private String name;
 
     public PackageMetrics(String name) {
@@ -22,7 +22,7 @@ public class PackageMetrics extends Metrics {
         for (ClassMetrics classMetrics : classMetricsList) {
             packageLines.addLines(classMetrics.getCodeLines());
         }
-        for (HeadCodeMetrics headCodeMetrics : headCodeMetricsList) {
+        for (HeadMetrics headCodeMetrics : headCodeMetricsList) {
             packageLines.addLines(headCodeMetrics.getCodeLines());
         }
         return packageLines;
@@ -35,8 +35,8 @@ public class PackageMetrics extends Metrics {
     public void addMetrics(Metrics metrics) {
         if (metrics instanceof ClassMetrics) {
             addClassMetrics((ClassMetrics) metrics);
-        } else if (metrics instanceof HeadCodeMetrics) {
-            addHeadCodeMetrics((HeadCodeMetrics) metrics);
+        } else if (metrics instanceof HeadMetrics) {
+            addHeadCodeMetrics((HeadMetrics) metrics);
         }
     }
 
@@ -44,7 +44,7 @@ public class PackageMetrics extends Metrics {
         classMetricsList.add(classMetrics);
     }
 
-    private void addHeadCodeMetrics(HeadCodeMetrics headCodeMetrics) {
+    private void addHeadCodeMetrics(HeadMetrics headCodeMetrics) {
         headCodeMetricsList.add(headCodeMetrics);
     }
 }

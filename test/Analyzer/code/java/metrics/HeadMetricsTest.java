@@ -6,21 +6,25 @@ import java.io.File;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-public class HeadCodeMetricsTest {
+public class HeadMetricsTest {
 
-    private HeadCodeMetrics codeTest;
+    private HeadMetrics codeTest;
 
-    public HeadCodeMetricsTest() {
+    public HeadMetricsTest() {
         FileLoader fileLoader = new FileLoader("." + File.separator + "test" + File.separator + "TestFiles" + File.separator + "CodeFile0.java");
         CodeParse codeParse = new CodeParse(fileLoader.toArray());
         codeParse.splitCode();
         Metrics[] metricsCalculators = codeParse.getMetricsList();
-        codeTest = (HeadCodeMetrics) metricsCalculators[0];
+        codeTest = (HeadMetrics) metricsCalculators[0];
     }
-//Todo hacer Test
 
     @Test
     public void testGetLibraryDependency() {
         assertEquals(2, codeTest.getLibraryDependency(), 0);
+    }
+
+    @Test
+    public void testGetNamePackage() {
+        assertEquals("TestFiles", codeTest.getNamePackage());
     }
 }

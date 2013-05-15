@@ -33,30 +33,4 @@ public class CodeParseTest {
         ClassMetrics cm = (ClassMetrics) m[1];
         assertEquals(5, cm.getMethodMetricsListSize(), 0);
     }
-
-    @Test
-    public void testGetFullNamePackage() {
-        String line = "package TestFiles;";
-        assertEquals("TestFiles", code.getFullNamePackage(line));
-    }
-
-    @Test
-    public void testGetFullNamePackage2() {
-        String line = "package Analyzer.code.java.parse;";
-        assertEquals("Analyzer.code.java.parse", code.getFullNamePackage(line));
-    }
-
-    @Test
-    public void testGetFullNameClass() {
-        String line = "public class CodeFile1 {";
-        String namePackage = "TestFiles";
-        assertEquals("TestFiles.CodeFile1", code.getFullNameClass(line, namePackage));
-    }
-
-    @Test
-    public void testGetFullNameMethod() {
-        String line = "    public String getFullNameMethod(String line, String fullNameClass) {";
-        String nameClass = "TestFiles.CodeFile1";
-        assertEquals("TestFiles.CodeFile1.getFullNameMethod", code.getFullNameMethod(line, nameClass));
-    }
 }

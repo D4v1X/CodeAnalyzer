@@ -16,18 +16,13 @@ public class Analyzer {
         this.path = javaText;
     }
 
-    public void start() {
+    public Metrics start() {
+        Directory rootDirectory = null;
         try {
-            //TODO Estructura
-            Directory rootDirectory = (Directory) FileAnalyzer.createDirectoryTree(path);
-            //TODO Repartidor de trabajao - ControllerParse(fichero, array)
-            Metrics rootMetrics = MetricsAnalyzer.createDirectoryTree(rootDirectory);
-            //Devolver lo guardado en memoria.
-            //rootMetrics.calculate();
-            //Devolver lo guardado en memoria.
-            //rootMetrics.saveCube();
+            rootDirectory = (Directory) FileAnalyzer.createDirectoryTree(path);
         } catch (IOException ex) {
             Logger.getLogger(Analyzer.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return MetricsAnalyzer.createDirectoryTree(rootDirectory);
     }
 }
