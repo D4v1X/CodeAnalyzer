@@ -12,8 +12,8 @@ public class Analyzer {
 
     private final String path;
 
-    public Analyzer(String javaText) {
-        this.path = javaText;
+    public Analyzer(String path) {
+        this.path = path;
     }
 
     public Metrics start() {
