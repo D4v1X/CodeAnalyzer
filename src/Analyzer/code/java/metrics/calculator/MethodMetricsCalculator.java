@@ -21,53 +21,20 @@ public class MethodMetricsCalculator extends CodeMetricsCalculator {
     public Integer getCyclomaticComplexity() {
         Integer cyclomaticComplexit = 0;
         Integer numberLine = 0;
+        String[] symbolsArray = new String[]{"if", "else if", "else", "for",
+                                            "foreach", "while", "case", "||",
+                                            "default", "continue", "&&",  "?",
+                                            "catch", "return"};
         for (String line : code) {
             numberLine++;
             if (lineTypeTable.get(numberLine) == LineType.EFFECTIVE) {
-                if (line.contains("if")) {
-                    cyclomaticComplexit++;
-                }
-                if (line.contains("else if")) {
-                    cyclomaticComplexit++;
-                }
-                if (line.contains("else")) {
-                    cyclomaticComplexit++;
-                }
-                if (line.contains("for")) {
-                    cyclomaticComplexit++;
-                }
-                if (line.contains("foreach")) {
-                    cyclomaticComplexit++;
-                }
-                if (line.contains("while")) {
-                    cyclomaticComplexit++;
-                }
-                if (line.contains("case")) {
-                    cyclomaticComplexit++;
-                }
-                if (line.contains("default")) {
-                    cyclomaticComplexit++;
-                }
-                if (line.contains("continue")) {
-                    cyclomaticComplexit++;
-                }
-                if (line.contains("&&")) {
-                    cyclomaticComplexit++;
-                }
-                if (line.contains("||")) {
-                    cyclomaticComplexit++;
-                }
-                if (line.contains("catch")) {
-                    cyclomaticComplexit++;
-                }
-                if (line.contains("?")) {
-                    cyclomaticComplexit++;
-                }
-                if (line.contains("return")) {
-                    cyclomaticComplexit++;
+                for (String symbol : symbolsArray) {
+                    if (line.contains(symbol)) {
+                        cyclomaticComplexit++;
+                        break;
+                    }
                 }
             }
-
         }
         return cyclomaticComplexit;
     }
