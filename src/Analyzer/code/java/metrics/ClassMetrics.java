@@ -19,6 +19,13 @@ public class ClassMetrics extends CodeMetrics {
         super(code);
         methodMetricsList = new ArrayList<>();
         attributeList = new ArrayList<>();
+        extractAttributes();
+    }
+
+    @Override
+    public void setCode(String[] codeArray) {
+        super.setCode(codeArray);
+        extractAttributes();
     }
 
     public void addMethod(MethodMetrics method) {
@@ -30,26 +37,19 @@ public class ClassMetrics extends CodeMetrics {
     }
 
     public Integer getNumberOfAttribute() {
-        Boolean inAttributeZone = false;
-        Integer numberOfLine = 0;
-        for (String line : code) {
-            numberOfLine++;
-            if (Contains.Class(line) && !inAttributeZone) {
-                inAttributeZone = true;
-            } else if (Contains.Function(line) && inAttributeZone) {
-                inAttributeZone = false;
-            } else if (inAttributeZone
-                    && LineType.EFFECTIVE == lineTypeTable.get(numberOfLine)
-                    && Contains.SemiColon(line)) {
-                String[] tokens = line.split("[ ;]");
-                attributeList.add(tokens[tokens.length - 1]);
-            }
-        }
         return attributeList.size();
     }
 
     public Double getLackOfCohesion() {
         return calculateLOCM();
+    }
+
+    public MethodMetrics[] getMethodMetricsList() {
+        return methodMetricsList.toArray(new MethodMetrics[methodMetricsList.size()]);
+    }
+
+    public Integer getMethodMetricsListSize() {
+        return methodMetricsList.size();
     }
 
     private Double calculateLOCM() {
@@ -70,12 +70,22 @@ public class ClassMetrics extends CodeMetrics {
         return total;
     }
 
-    public MethodMetrics[] getMethodMetricsList() {
-        return methodMetricsList.toArray(new MethodMetrics[methodMetricsList.size()]);
-    }
-
-    public Integer getMethodMetricsListSize() {
-        return methodMetricsList.size();
+    private void extractAttributes() {
+        Boolean inAttributeZone = false;
+        Integer numberOfLine = 0;
+        for (String line : code) {
+            numberOfLine++;
+            if (Contains.Class(line) && !inAttributeZone) {
+                inAttributeZone = true;
+            } else if (Contains.Function(line) && inAttributeZone) {
+                inAttributeZone = false;
+            } else if (inAttributeZone
+                    && LineType.EFFECTIVE == lineTypeTable.get(numberOfLine)
+                    && Contains.SemiColon(line)) {
+                String[] tokens = line.split("[ ;]");
+                attributeList.add(tokens[tokens.length - 1]);
+            }
+        }
     }
     //TODO Cread metrica de Dependencias
     //Nota HashTable for Eferente(num import) (nombre de clase, numero de repeticiones)
