@@ -1,4 +1,4 @@
-package Analyzer.code.java.metrics.calculator;
+package Analyzer.code.java.metrics;
 
 import Analyzer.code.FileLoader;
 import Analyzer.code.java.parse.CodeParse;

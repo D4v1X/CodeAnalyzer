@@ -1,10 +1,10 @@
 package Analyzer.code.java.parse;
 
 import Analyzer.code.java.Contains;
-import Analyzer.code.java.metrics.calculator.ClassMetrics;
-import Analyzer.code.java.metrics.calculator.HeadCodeMetrics;
-import Analyzer.code.java.metrics.calculator.MethodMetrics;
-import Analyzer.code.java.metrics.calculator.Metrics;
+import Analyzer.code.java.metrics.ClassMetrics;
+import Analyzer.code.java.metrics.HeadCodeMetrics;
+import Analyzer.code.java.metrics.MethodMetrics;
+import Analyzer.code.java.metrics.Metrics;
 import java.util.ArrayList;
 import java.util.List;
 

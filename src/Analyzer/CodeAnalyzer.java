@@ -1,6 +1,6 @@
 package Analyzer;
 
-import Analyzer.code.java.Analyzer;
+import Analyzer.code.Analyzer;
 
 public class CodeAnalyzer {
 

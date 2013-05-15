@@ -1,4 +1,4 @@
-package Analyzer.code.java.metrics.calculator;
+package Analyzer.code.java.metrics;
 
 import Analyzer.code.LineType;
 import Analyzer.code.java.metrics.indicators.CodeLines;

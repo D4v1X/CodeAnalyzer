@@ -1,4 +1,4 @@
-package Analyzer.code.java.metrics.calculator;
+package Analyzer.code.java.metrics;
 
 import Analyzer.code.java.Contains;
 import java.util.ArrayList;

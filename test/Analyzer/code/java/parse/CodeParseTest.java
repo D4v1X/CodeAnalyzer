@@ -1,8 +1,8 @@
 package Analyzer.code.java.parse;
 
 import Analyzer.code.FileLoader;
-import Analyzer.code.java.metrics.calculator.ClassMetrics;
-import Analyzer.code.java.metrics.calculator.Metrics;
+import Analyzer.code.java.metrics.ClassMetrics;
+import Analyzer.code.java.metrics.Metrics;
 import java.io.File;
 import static org.junit.Assert.*;
 import org.junit.Test;

@@ -1,8 +1,8 @@
-package Analyzer.code.java.metrics;
+package Analyzer.code.java;
 
 import Analyzer.code.FileLoader;
-import Analyzer.code.java.metrics.calculator.Metrics;
-import Analyzer.code.java.metrics.calculator.PackageMetrics;
+import Analyzer.code.java.metrics.Metrics;
+import Analyzer.code.java.metrics.PackageMetrics;
 import Analyzer.code.java.parse.CodeParse;
 import Analyzer.structure.Directory;
 import Analyzer.structure.GenericFile;
