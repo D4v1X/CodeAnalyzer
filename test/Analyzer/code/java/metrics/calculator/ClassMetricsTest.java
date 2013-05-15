@@ -6,16 +6,16 @@ import java.io.File;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-public class ClassMetricsCalculatorTest {
+public class ClassMetricsTest {
 
-    private ClassMetricsCalculator codeTest;
+    private ClassMetrics codeTest;
 
-    public ClassMetricsCalculatorTest() {
+    public ClassMetricsTest() {
         FileLoader fileLoader = new FileLoader("." + File.separator + "test" + File.separator + "TestFiles" + File.separator + "CodeFile0.java");
         CodeParse codeParse = new CodeParse(fileLoader.toArray());
-        codeParse.splitCodev2();
-        MetricsCalculator[] metricsCalculators = codeParse.getMetricsCalculatorsList();
-        codeTest = (ClassMetricsCalculator) metricsCalculators[1];
+        codeParse.splitCode();
+        Metrics[] metricsCalculators = codeParse.getMetricsList();
+        codeTest = (ClassMetrics) metricsCalculators[1];
     }
 
 // TODO Hacer Test que faltan

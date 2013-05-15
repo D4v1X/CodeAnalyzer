@@ -1,8 +1,8 @@
 package Analyzer.code.java.parse;
 
 import Analyzer.code.FileLoader;
-import Analyzer.code.java.metrics.ClassMetrics;
-import Analyzer.code.java.metrics.Metrics;
+import Analyzer.code.java.metrics.calculator.ClassMetrics;
+import Analyzer.code.java.metrics.calculator.Metrics;
 import java.io.File;
 import static org.junit.Assert.*;
 import org.junit.Test;
@@ -22,15 +22,15 @@ public class CodeParseTest {
     @Test
     public void testSplitCode() {
         code.splitCode();
-        assertEquals(1, code.getMetricsListSize(), 0);
+        assertEquals(2, code.getMetricsListSize(), 0);
     }
 
     @Test
     public void testSplitCodeComplex() {
         codeComplex.splitCode();
-        assertEquals(1, codeComplex.getMetricsListSize(), 0);
+        assertEquals(2, codeComplex.getMetricsListSize(), 0);
         Metrics[] m = codeComplex.getMetricsList();
-        ClassMetrics cm = (ClassMetrics) m[0];
+        ClassMetrics cm = (ClassMetrics) m[1];
         assertEquals(5, cm.getMethodMetricsListSize(), 0);
     }
 

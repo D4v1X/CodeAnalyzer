@@ -4,14 +4,14 @@ import Analyzer.code.java.Contains;
 import java.util.ArrayList;
 import java.util.List;
 
-public class HeadCodeMetricsCalculator extends CodeMetricsCalculator {
+public class HeadCodeMetrics extends CodeMetrics {
 
     private List<String> importList;
     private List<String> libraryList;
     private String namePackage;
     private String rootNamePackage;
 
-    public HeadCodeMetricsCalculator(String[] code) {
+    public HeadCodeMetrics(String[] code) {
         super(code);
         this.importList = new ArrayList<>();
         this.libraryList = new ArrayList<>();

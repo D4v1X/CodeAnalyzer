@@ -7,16 +7,16 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class CodeMetricsCalculator extends MetricsCalculator {
+public class CodeMetrics extends Metrics {
 
     protected List<String> code;
     protected HashMap<Integer, LineType> lineTypeTable;
 
-    public CodeMetricsCalculator() {
+    public CodeMetrics() {
         this.lineTypeTable = new HashMap<>();
     }
 
-    public CodeMetricsCalculator(String[] code) {
+    public CodeMetrics(String[] code) {
         this.code = new ArrayList<>(Arrays.asList(code));
         this.lineTypeTable = new HashMap<>();
         initLineTypeTable();

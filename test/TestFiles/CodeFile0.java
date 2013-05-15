@@ -58,9 +58,7 @@ public abstract class CodeFile0 {
             Logger.getLogger(CodeFile0.class.getName()).log(Level.SEVERE, null, ex);
         }
         javaText4 = null;
-
         return NumberLines;
-
     }
 
     public File getJavaTextMolon2(String s) {

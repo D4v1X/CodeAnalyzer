@@ -5,28 +5,28 @@ import Analyzer.code.java.Contains;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ClassMetricsCalculator extends CodeMetricsCalculator {
+public class ClassMetrics extends CodeMetrics {
 
-    private List<MethodMetricsCalculator> methodMetricsCalculatorList;
+    private List<MethodMetrics> methodMetricsList;
     private List<String> attributeList;
 
-    public ClassMetricsCalculator() {
-        methodMetricsCalculatorList = new ArrayList<>();
+    public ClassMetrics() {
+        methodMetricsList = new ArrayList<>();
         attributeList = new ArrayList<>();
     }
 
-    public ClassMetricsCalculator(String[] code) {
+    public ClassMetrics(String[] code) {
         super(code);
-        methodMetricsCalculatorList = new ArrayList<>();
+        methodMetricsList = new ArrayList<>();
         attributeList = new ArrayList<>();
     }
 
-    public void addMethod(MethodMetricsCalculator method) {
-        methodMetricsCalculatorList.add(method);
+    public void addMethod(MethodMetrics method) {
+        methodMetricsList.add(method);
     }
 
     public Integer getNumberOfMethod() {
-        return methodMetricsCalculatorList.size();
+        return methodMetricsList.size();
     }
 
     public Integer getNumberOfAttribute() {
@@ -60,7 +60,7 @@ public class ClassMetricsCalculator extends CodeMetricsCalculator {
 
     private Double getSummationMF() {
         Double total = 0.0;
-        for (MethodMetricsCalculator method : methodMetricsCalculatorList) {
+        for (MethodMetrics method : methodMetricsList) {
             for (String attribute : attributeList) {
                 if (method.isUsed(attribute)) {
                     total++;
@@ -68,6 +68,14 @@ public class ClassMetricsCalculator extends CodeMetricsCalculator {
             }
         }
         return total;
+    }
+
+    public MethodMetrics[] getMethodMetricsList() {
+        return methodMetricsList.toArray(new MethodMetrics[methodMetricsList.size()]);
+    }
+
+    public Integer getMethodMetricsListSize() {
+        return methodMetricsList.size();
     }
     //TODO Cread metrica de Dependencias
     //Nota HashTable for Eferente(num import) (nombre de clase, numero de repeticiones)

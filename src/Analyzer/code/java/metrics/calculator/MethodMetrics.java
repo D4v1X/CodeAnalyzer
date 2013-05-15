@@ -3,9 +3,9 @@ package Analyzer.code.java.metrics.calculator;
 import Analyzer.code.LineType;
 import Analyzer.code.java.Contains;
 
-public class MethodMetricsCalculator extends CodeMetricsCalculator {
+public class MethodMetrics extends CodeMetrics {
 
-    public MethodMetricsCalculator(String[] code) {
+    public MethodMetrics(String[] code) {
         super(code);
     }
 

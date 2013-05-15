@@ -1,7 +1,7 @@
 package Analyzer.code.java;
 
-import Analyzer.code.java.metrics.Metrics;
 import Analyzer.code.java.metrics.MetricsAnalyzer;
+import Analyzer.code.java.metrics.calculator.Metrics;
 import Analyzer.structure.Directory;
 import Analyzer.structure.FileAnalyzer;
 import java.io.IOException;

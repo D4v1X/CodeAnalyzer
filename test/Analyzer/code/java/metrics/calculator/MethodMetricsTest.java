@@ -1,9 +1,6 @@
 package Analyzer.code.java.metrics.calculator;
 
 import Analyzer.code.FileLoader;
-import Analyzer.code.java.metrics.ClassMetrics;
-import Analyzer.code.java.metrics.MethodMetrics;
-import Analyzer.code.java.metrics.Metrics;
 import Analyzer.code.java.parse.CodeParse;
 import java.io.File;
 import java.util.ArrayList;
@@ -12,19 +9,13 @@ import java.util.List;
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-public class MethodMetricsCalculatorTest {
+public class MethodMetricsTest {
 
-    MethodMetricsCalculator codeTest;
+    MethodMetrics codeTest;
     List<MethodMetrics> codeTestList;
 
-    public MethodMetricsCalculatorTest() {
-        FileLoader fileLoader = new FileLoader("." + File.separator + "test" + File.separator + "TestFiles" + File.separator + "CodeFile3.java");
-        codeTest = new MethodMetricsCalculator(fileLoader.toArray());
-    }
-
-    public void initM() {
+    public MethodMetricsTest() {
         FileLoader fileLoader = new FileLoader("." + File.separator + "test" + File.separator + "TestFiles" + File.separator + "CodeFile0.java");
-        codeTestList = new ArrayList<>();
         CodeParse codeParse = new CodeParse(fileLoader.toArray());
         codeParse.splitCode();
         Metrics[] metrics = codeParse.getMetricsList();
@@ -33,7 +24,7 @@ public class MethodMetricsCalculatorTest {
                 codeTestList = new ArrayList<>(Arrays.asList(((ClassMetrics) m).getMethodMetricsList()));
             }
         }
-
+        codeTest = new MethodMetrics(fileLoader.toArray());
     }
 
     @Test
@@ -43,41 +34,36 @@ public class MethodMetricsCalculatorTest {
 
     @Test
     public void testGetCodeLinesBlank() {
-        assertEquals(1, codeTest.getCodeLines().getBlankLines(), 0);
+        assertEquals(9, codeTest.getCodeLines().getBlankLines(), 0);
     }
 
     @Test
     public void testGetCodeLineseffective() {
-        assertEquals(3, codeTest.getCodeLines().getEffectiveLines(), 0);
+        assertEquals(56, codeTest.getCodeLines().getEffectiveLines(), 0);
     }
 
     @Test
     public void testGetNumberOfParametersEmpty() {
-        initM();
-        assertEquals(0, new MethodMetricsCalculator(codeTestList.get(0).getCodeMethod()).getNumberOfParameters(), 0);
+        assertEquals(0, codeTestList.get(0).getNumberOfParameters(), 0);
     }
 
     @Test
     public void testGetNumberOfParametersNonEmpty() {
-        initM();
-        assertEquals(1, new MethodMetricsCalculator(codeTestList.get(1).getCodeMethod()).getNumberOfParameters(), 0);
+        assertEquals(1, codeTestList.get(1).getNumberOfParameters(), 0);
     }
 
     @Test
     public void testGetNumberOfParametersNonEmptyTwo() {
-        initM();
-        assertEquals(2, new MethodMetricsCalculator(codeTestList.get(2).getCodeMethod()).getNumberOfParameters(), 0);
+        assertEquals(2, codeTestList.get(2).getNumberOfParameters(), 0);
     }
 
     @Test
     public void testGetCyclomaticComplexitySimple() {
-        initM();
-        assertEquals(1, new MethodMetricsCalculator(codeTestList.get(1).getCodeMethod()).getCyclomaticComplexity(), 0);
+        assertEquals(1, codeTestList.get(1).getCyclomaticComplexity(), 0);
     }
 
     @Test
     public void testGetCyclomaticComplexity() {
-        initM();
-        assertEquals(3, new MethodMetricsCalculator(codeTestList.get(2).getCodeMethod()).getCyclomaticComplexity(), 0);
+        assertEquals(3, codeTestList.get(2).getCyclomaticComplexity(), 0);
     }
 }
