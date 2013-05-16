@@ -25,8 +25,11 @@ public class SaverMetricsDataStore {
     }
 
     public void save(PackageMetrics rootPackageMetrics) {
-        for (Metrics currentMetrics : rootPackageMetrics.getPackageMetricsList()) {
-            childrenSaver(currentMetrics);
+        for (Metrics currentClassMetrics : rootPackageMetrics.getClassMetricsList()) {
+            childrenSaver(currentClassMetrics);
+        }
+        for (Metrics currentPackageMetrics : rootPackageMetrics.getPackageMetricsList()) {
+            childrenSaver(currentPackageMetrics);
         }
     }
 
@@ -34,13 +37,16 @@ public class SaverMetricsDataStore {
         if (currentMetrics.isPackageMetrics()) {
             PackageMetrics metrics = (PackageMetrics) currentMetrics;
             insertPackageEntity(metrics);
+            insertPackageTuple(metrics);
             save(metrics);
         }
         if (currentMetrics.isClassMetrics()) {
             ClassMetrics metrics = (ClassMetrics) currentMetrics;
             insertClassEntity(metrics);
+            insertClassTuple(metrics);
             for (MethodMetrics methodMetrics : metrics.getMethodMetricsList()) {
                 insertMethodEntity(methodMetrics);
+                insertMethodTuple(methodMetrics);
             }
         }
     }
