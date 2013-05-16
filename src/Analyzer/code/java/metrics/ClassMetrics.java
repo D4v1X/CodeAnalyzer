@@ -49,8 +49,8 @@ public class ClassMetrics extends CodeMetrics {
         return methodMetricsList.toArray(new MethodMetrics[methodMetricsList.size()]);
     }
 
-    public Integer getMethodMetricsListSize() {
-        return methodMetricsList.size();
+    public Double getMethodMetricsListSize() {
+        return (double) methodMetricsList.size();
     }
 
     private Double calculateLOCM() {
@@ -88,14 +88,6 @@ public class ClassMetrics extends CodeMetrics {
             }
         }
     }
-
-//    public MethodMetrics[] getMethodMetricsList() {
-//        return methodMetricsList.toArray(new MethodMetrics[methodMetricsList.size()]);
-//    }
-//
-//    public Double getMethodMetricsListSize() {
-//        return (double) methodMetricsList.size();
-//    }
     //TODO Cread metrica de Dependencias
     //Nota HashTable for Eferente(num import) (nombre de clase, numero de repeticiones)
     //                   Aferente consultar Hashmap
