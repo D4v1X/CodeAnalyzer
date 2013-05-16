@@ -12,17 +12,12 @@ import static org.junit.Assert.*;
  * @author davidsantiagobarrera
  */
 public class CodeLinesTest {
-
+    
     public CodeLinesTest() {
     }
-
-    // TODO Hacer los Tests que faltan
+// TODO Hacer los Tests que faltan
     @Test
     public void testGetBlankLines() {
-    }
-
-    @Test
-    public void testSetBlankLines() {
     }
 
     @Test
@@ -34,10 +29,6 @@ public class CodeLinesTest {
     }
 
     @Test
-    public void testSetCommentLines() {
-    }
-
-    @Test
     public void testIncreaseCommentLines() {
     }
 
@@ -46,14 +37,14 @@ public class CodeLinesTest {
     }
 
     @Test
-    public void testSetEffectiveLines() {
-    }
-
-    @Test
     public void testIncreaseEffectiveLines() {
     }
 
     @Test
     public void testGetAllLines() {
+    }
+
+    @Test
+    public void testAddLines() {
     }
 }
