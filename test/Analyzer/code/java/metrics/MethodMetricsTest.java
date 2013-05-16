@@ -24,46 +24,45 @@ public class MethodMetricsTest {
                 codeTestList = new ArrayList<>(Arrays.asList(((ClassMetrics) m).getMethodMetricsList()));
             }
         }
-        codeTest = new MethodMetrics(fileLoader.toArray());
     }
 
     @Test
     public void testGetCodeLinesComment() {
-        assertEquals(8, codeTest.getCodeLines().getCommentLines(), 0);
+        assertEquals(3.0, codeTestList.get(2).getCodeLines().getCommentLines(), 0.0);
     }
 
     @Test
     public void testGetCodeLinesBlank() {
-        assertEquals(9, codeTest.getCodeLines().getBlankLines(), 0);
+        assertEquals(2.0, codeTestList.get(2).getCodeLines().getBlankLines(), 0.0);
     }
 
     @Test
     public void testGetCodeLineseffective() {
-        assertEquals(56, codeTest.getCodeLines().getEffectiveLines(), 0);
+        assertEquals(15.0, codeTestList.get(2).getCodeLines().getEffectiveLines(), 0.0);
     }
 
     @Test
     public void testGetNumberOfParametersEmpty() {
-        assertEquals(0, codeTestList.get(0).getNumberOfParameters(), 0);
+        assertEquals(0.0, codeTestList.get(0).getNumberOfParameters(), 0.0);
     }
 
     @Test
     public void testGetNumberOfParametersNonEmpty() {
-        assertEquals(1, codeTestList.get(1).getNumberOfParameters(), 0);
+        assertEquals(1.0, codeTestList.get(1).getNumberOfParameters(), 0.0);
     }
 
     @Test
     public void testGetNumberOfParametersNonEmptyTwo() {
-        assertEquals(2, codeTestList.get(2).getNumberOfParameters(), 0);
+        assertEquals(2.0, codeTestList.get(2).getNumberOfParameters(), 0.0);
     }
 
     @Test
     public void testGetCyclomaticComplexitySimple() {
-        assertEquals(1, codeTestList.get(1).getCyclomaticComplexity(), 0);
+        assertEquals(1.0, codeTestList.get(1).getCyclomaticComplexity(), 0.0);
     }
 
     @Test
     public void testGetCyclomaticComplexity() {
-        assertEquals(3, codeTestList.get(2).getCyclomaticComplexity(), 0);
+        assertEquals(3.0, codeTestList.get(2).getCyclomaticComplexity(), 0.0);
     }
 }

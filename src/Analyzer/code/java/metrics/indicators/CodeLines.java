@@ -2,53 +2,41 @@ package Analyzer.code.java.metrics.indicators;
 
 public class CodeLines {
 
-    private Integer blankLines;
-    private Integer commentLines;
-    private Integer effectiveLines;
+    private Double blankLines;
+    private Double commentLines;
+    private Double effectiveLines;
 
     public CodeLines() {
-        this.blankLines = 0;
-        this.commentLines = 0;
-        this.effectiveLines = 0;
+        this.blankLines = 0.0;
+        this.commentLines = 0.0;
+        this.effectiveLines = 0.0;
     }
 
-    public Integer getBlankLines() {
+    public Double getBlankLines() {
         return blankLines;
-    }
-
-    public void setBlankLines(Integer blankLines) {
-        this.blankLines = blankLines;
     }
 
     public void increaseBlankLines() {
         this.blankLines++;
     }
 
-    public Integer getCommentLines() {
+    public Double getCommentLines() {
         return commentLines;
-    }
-
-    public void setCommentLines(Integer commentLines) {
-        this.commentLines = commentLines;
     }
 
     public void increaseCommentLines() {
         this.commentLines++;
     }
 
-    public Integer getEffectiveLines() {
+    public Double getEffectiveLines() {
         return effectiveLines;
-    }
-
-    public void setEffectiveLines(Integer effectiveLines) {
-        this.effectiveLines = effectiveLines;
     }
 
     public void increaseEffectiveLines() {
         this.effectiveLines++;
     }
 
-    public Integer getAllLines() {
+    public Double getAllLines() {
         return effectiveLines + blankLines + commentLines;
     }
 

@@ -5,22 +5,26 @@ import Analyzer.code.java.Contains;
 
 public class MethodMetrics extends CodeMetrics {
 
-    public MethodMetrics(String[] code) {
-        super(code);
+    public MethodMetrics(String name) {
+        super(name);
     }
 
-    public Integer getNumberOfParameters() {
+    public MethodMetrics(String name, String[] code) {
+        super(name, code);
+    }
+
+    public Double getNumberOfParameters() {
         String head = code.get(0);
         String[] tokens = head.split("[()]");
         tokens = tokens[1].split(",");
         if (tokens.length == 1 && tokens[0].isEmpty()) {
-            return 0;
+            return 0.0;
         }
-        return tokens.length;
+        return (double) tokens.length;
     }
-//TODO Constains implement
+//TODO Fix if
 
-    public Integer getCyclomaticComplexity() {
+    public Double getCyclomaticComplexity() {
         Integer cyclomaticComplexit = 0;
         Integer numberLine = 0;
         for (String line : code) {
@@ -71,7 +75,7 @@ public class MethodMetrics extends CodeMetrics {
             }
 
         }
-        return cyclomaticComplexit;
+        return (double) cyclomaticComplexit;
     }
 
     public Boolean isUsed(String attribute) {
@@ -80,6 +84,21 @@ public class MethodMetrics extends CodeMetrics {
                 return true;
             }
         }
+        return false;
+    }
+
+    @Override
+    public Boolean isClassMetrics() {
+        return false;
+    }
+
+    @Override
+    public Boolean isMethodMetrics() {
+        return true;
+    }
+
+    @Override
+    public Boolean isPackageMetrics() {
         return false;
     }
 }

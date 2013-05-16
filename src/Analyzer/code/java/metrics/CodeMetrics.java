@@ -7,18 +7,19 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class CodeMetrics extends Metrics {
+public abstract class CodeMetrics extends Metrics {
 
     protected List<String> code;
     protected HashMap<Integer, LineType> lineTypeTable;
 
-    public CodeMetrics() {
+    public CodeMetrics(String name) {
+        super(name);
         this.lineTypeTable = new HashMap<>();
     }
 
-    public CodeMetrics(String[] code) {
+    public CodeMetrics(String name, String[] code) {
+        this(name);
         this.code = new ArrayList<>(Arrays.asList(code));
-        this.lineTypeTable = new HashMap<>();
         initLineTypeTable();
     }
 

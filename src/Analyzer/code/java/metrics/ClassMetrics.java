@@ -10,13 +10,14 @@ public class ClassMetrics extends CodeMetrics {
     private List<MethodMetrics> methodMetricsList;
     private List<String> attributeList;
 
-    public ClassMetrics() {
+    public ClassMetrics(String name) {
+        super(name);
         methodMetricsList = new ArrayList<>();
         attributeList = new ArrayList<>();
     }
 
-    public ClassMetrics(String[] code) {
-        super(code);
+    public ClassMetrics(String name, String[] code) {
+        super(name, code);
         methodMetricsList = new ArrayList<>();
         attributeList = new ArrayList<>();
         extractAttributes();
@@ -32,12 +33,12 @@ public class ClassMetrics extends CodeMetrics {
         methodMetricsList.add(method);
     }
 
-    public Integer getNumberOfMethod() {
-        return methodMetricsList.size();
+    public Double getNumberOfMethod() {
+        return (double) methodMetricsList.size();
     }
 
-    public Integer getNumberOfAttribute() {
-        return attributeList.size();
+    public Double getNumberOfAttribute() {
+        return (double) attributeList.size();
     }
 
     public Double getLackOfCohesion() {
@@ -53,8 +54,8 @@ public class ClassMetrics extends CodeMetrics {
     }
 
     private Double calculateLOCM() {
-        Integer F = getNumberOfAttribute();
-        Integer M = getNumberOfMethod();
+        Double F = getNumberOfAttribute();
+        Double M = getNumberOfMethod();
         return 1 - (getSummationMF() / (M * F));
     }
 
@@ -87,7 +88,30 @@ public class ClassMetrics extends CodeMetrics {
             }
         }
     }
+
+//    public MethodMetrics[] getMethodMetricsList() {
+//        return methodMetricsList.toArray(new MethodMetrics[methodMetricsList.size()]);
+//    }
+//
+//    public Double getMethodMetricsListSize() {
+//        return (double) methodMetricsList.size();
+//    }
     //TODO Cread metrica de Dependencias
     //Nota HashTable for Eferente(num import) (nombre de clase, numero de repeticiones)
     //                   Aferente consultar Hashmap
+
+    @Override
+    public Boolean isClassMetrics() {
+        return true;
+    }
+
+    @Override
+    public Boolean isMethodMetrics() {
+        return false;
+    }
+
+    @Override
+    public Boolean isPackageMetrics() {
+        return false;
+    }
 }

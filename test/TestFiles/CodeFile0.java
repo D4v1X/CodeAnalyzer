@@ -46,6 +46,11 @@ public abstract class CodeFile0 {
     }
 
     public Integer getNumberLines(Integer Prueba, String prueba2) {
+
+        /*
+         *  comment
+         */
+
         Integer NumberLines = 0;
         CodeFile4 codeFile3 = new CodeFile4();
         try {
