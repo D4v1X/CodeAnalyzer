@@ -40,7 +40,7 @@ public class HeadMetrics extends CodeMetrics {
     }
 //Todo Fix
 
-    public Integer getLibraryDependency() {
+    public Double getLibraryDependency() {
         String[] tokens;
         for (String line : code) {
             if (Contains.Import(line)) {
@@ -55,10 +55,25 @@ public class HeadMetrics extends CodeMetrics {
                 libraryList.add(namelibrary);
             }
         }
-        return libraryList.size();
+        return (double) libraryList.size();
     }
 
     public String getNamePackage() {
         return namePackage;
+    }
+
+    @Override
+    public Boolean isClassMetrics() {
+        return false;
+    }
+
+    @Override
+    public Boolean isMethodMetrics() {
+        return false;
+    }
+
+    @Override
+    public Boolean isPackageMetrics() {
+        return false;
     }
 }

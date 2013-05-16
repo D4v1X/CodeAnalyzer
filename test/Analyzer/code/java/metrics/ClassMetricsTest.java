@@ -29,7 +29,7 @@ public class ClassMetricsTest {
 
     @Test
     public void testGetNumberOfAttribute() {
-        assertEquals(10, codeTest.getNumberOfAttribute(), 0);
+        assertEquals(10.0, codeTest.getNumberOfAttribute(), 0.0);
     }
 
     @Test

@@ -45,8 +45,8 @@ public class CodeParse {
         }
     }
 
-    public Integer getMetricsListSize() {
-        return metricsList.size();
+    public Double getMetricsListSize() {
+        return (double) metricsList.size();
     }
 
     public Metrics[] getMetricsList() {
@@ -57,10 +57,10 @@ public class CodeParse {
         String line = getCurrentLine();
         String fullNameMethod = getFullNameMethod(line, fullNameClass);
         ArrayList<String> methodCode = new ArrayList<>();
-        int bracesMethod = 1;
+        Double bracesMethod = 1.0;
         methodCode.clear();
         methodCode.add(line);
-        while (bracesMethod > 0) {
+        while (bracesMethod > 0.0) {
             line = nextLine();
             methodCode.add(line);
             bracesMethod = manageBraces(line, bracesMethod);
@@ -71,12 +71,12 @@ public class CodeParse {
     private ClassMetrics splitClass(String fullNamePackage) {
         String line = getCurrentLine();
         ArrayList<String> classCode = new ArrayList<>();
-        int bracesClass = 1;
+        Double bracesClass = 1.0;
         String fullNameClass = getFullNameClass(line, fullNamePackage);
         ClassMetrics classMetrics = new ClassMetrics(fullNameClass);
         classCode.clear();
         classCode.add(line);
-        while (bracesClass > 0) {
+        while (bracesClass > 0.0) {
             line = nextLine();
             classCode.add(line);
             bracesClass = manageBraces(line, bracesClass);
@@ -118,7 +118,7 @@ public class CodeParse {
         return code[position - 1];
     }
 
-    private Integer manageBraces(String line, int bracesClass) {
+    private Double manageBraces(String line, Double bracesClass) {
         if (Contains.openBrace(line)) {
             bracesClass++;
         }

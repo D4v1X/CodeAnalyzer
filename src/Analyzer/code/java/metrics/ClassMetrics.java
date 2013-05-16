@@ -26,11 +26,11 @@ public class ClassMetrics extends CodeMetrics {
         methodMetricsList.add(method);
     }
 
-    public Integer getNumberOfMethod() {
-        return methodMetricsList.size();
+    public Double getNumberOfMethod() {
+        return (double) methodMetricsList.size();
     }
 
-    public Integer getNumberOfAttribute() {
+    public Double getNumberOfAttribute() {
         Boolean inAttributeZone = false;
         Integer numberOfLine = 0;
         for (String line : code) {
@@ -46,7 +46,7 @@ public class ClassMetrics extends CodeMetrics {
                 attributeList.add(tokens[tokens.length - 1]);
             }
         }
-        return attributeList.size();
+        return (double) attributeList.size();
     }
 
     public Double getLackOfCohesion() {
@@ -54,8 +54,8 @@ public class ClassMetrics extends CodeMetrics {
     }
 
     private Double calculateLOCM() {
-        Integer F = getNumberOfAttribute();
-        Integer M = getNumberOfMethod();
+        Double F = getNumberOfAttribute();
+        Double M = getNumberOfMethod();
         return 1 - (getSummationMF() / (M * F));
     }
 
@@ -75,10 +75,25 @@ public class ClassMetrics extends CodeMetrics {
         return methodMetricsList.toArray(new MethodMetrics[methodMetricsList.size()]);
     }
 
-    public Integer getMethodMetricsListSize() {
-        return methodMetricsList.size();
+    public Double getMethodMetricsListSize() {
+        return (double) methodMetricsList.size();
     }
     //TODO Cread metrica de Dependencias
     //Nota HashTable for Eferente(num import) (nombre de clase, numero de repeticiones)
     //                   Aferente consultar Hashmap
+
+    @Override
+    public Boolean isClassMetrics() {
+        return true;
+    }
+
+    @Override
+    public Boolean isMethodMetrics() {
+        return false;
+    }
+
+    @Override
+    public Boolean isPackageMetrics() {
+        return false;
+    }
 }

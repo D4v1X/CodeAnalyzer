@@ -20,7 +20,7 @@ public class HeadMetricsTest {
 
     @Test
     public void testGetLibraryDependency() {
-        assertEquals(2, codeTest.getLibraryDependency(), 0);
+        assertEquals(2.0, codeTest.getLibraryDependency(), 0.0);
     }
 
     @Test

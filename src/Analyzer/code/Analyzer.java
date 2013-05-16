@@ -10,19 +10,13 @@ import java.util.logging.Logger;
 
 public class Analyzer {
 
-    private final String path;
-
-    public Analyzer(String path) {
-        this.path = path;
-    }
-
-    public Metrics start() {
+    public static Metrics start(String path) {
         Directory rootDirectory = null;
         try {
             rootDirectory = (Directory) FileAnalyzer.createDirectoryTree(path);
         } catch (IOException ex) {
             Logger.getLogger(Analyzer.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return MetricsAnalyzer.createDirectoryTree(rootDirectory);
+        return MetricsAnalyzer.createDataMetrics(rootDirectory);
     }
 }

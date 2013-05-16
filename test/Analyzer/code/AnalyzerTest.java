@@ -9,11 +9,6 @@ public class AnalyzerTest {
 
     Analyzer javaAnalyzer;
 
-    @Before
-    public void JavaAnalyzer() {
-        javaAnalyzer = new Analyzer("./test/TestFiles");
-    }
-
     @Test
     public void testStart() {
         //TODO Hacer Test Start

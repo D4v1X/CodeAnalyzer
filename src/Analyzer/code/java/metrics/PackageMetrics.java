@@ -6,14 +6,14 @@ import java.util.List;
 
 public class PackageMetrics extends Metrics {
 
+    private List<PackageMetrics> packageMetricsesList;
     private List<ClassMetrics> classMetricsList;
     private List<HeadMetrics> headCodeMetricsList;
-    private String name;
 
     public PackageMetrics(String name) {
+        super(name);
         this.classMetricsList = new ArrayList<>();
         this.headCodeMetricsList = new ArrayList<>();
-        this.name = name;
     }
 
     @Override
@@ -28,8 +28,8 @@ public class PackageMetrics extends Metrics {
         return packageLines;
     }
 
-    public Integer getNumberClass() {
-        return classMetricsList.size();
+    public Double getNumberClass() {
+        return (double) classMetricsList.size();
     }
 
     public void addMetrics(Metrics metrics) {
@@ -37,6 +37,8 @@ public class PackageMetrics extends Metrics {
             addClassMetrics((ClassMetrics) metrics);
         } else if (metrics instanceof HeadMetrics) {
             addHeadCodeMetrics((HeadMetrics) metrics);
+        } else if (metrics instanceof PackageMetrics) {
+            addPackageMetrics((PackageMetrics) metrics);
         }
     }
 
@@ -46,5 +48,32 @@ public class PackageMetrics extends Metrics {
 
     private void addHeadCodeMetrics(HeadMetrics headCodeMetrics) {
         headCodeMetricsList.add(headCodeMetrics);
+    }
+
+    private void addPackageMetrics(PackageMetrics packageMetrics) {
+        packageMetricsesList.add(packageMetrics);
+    }
+
+    public ClassMetrics[] getClassMetricsList() {
+        return classMetricsList.toArray(new ClassMetrics[classMetricsList.size()]);
+    }
+
+    public PackageMetrics[] getPackageMetricsList() {
+        return packageMetricsesList.toArray(new PackageMetrics[packageMetricsesList.size()]);
+    }
+
+    @Override
+    public Boolean isClassMetrics() {
+        return false;
+    }
+
+    @Override
+    public Boolean isMethodMetrics() {
+        return false;
+    }
+
+    @Override
+    public Boolean isPackageMetrics() {
+        return true;
     }
 }

@@ -7,14 +7,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
-public class CodeMetrics extends Metrics {
+public abstract class CodeMetrics extends Metrics {
 
     protected List<String> code;
     protected HashMap<Integer, LineType> lineTypeTable;
-    protected String name;
 
     public CodeMetrics(String name) {
-        this.name = name;
+        super(name);
         this.lineTypeTable = new HashMap<>();
     }
 
@@ -71,14 +70,5 @@ public class CodeMetrics extends Metrics {
     public void setCode(String[] codeArray) {
         code = new ArrayList<>(Arrays.asList(codeArray));
         initLineTypeTable();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public String getSimpleName() {
-        String[] tokens = name.split("[.]");
-        return tokens[tokens.length - 1];
     }
 }

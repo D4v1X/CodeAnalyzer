@@ -2,27 +2,27 @@ package Analyzer.code.java.metrics.indicators;
 
 public class Coupling {
 
-    private Integer afferentCoupling;
-    private Integer efferentCoupling;
+    private Double afferentCoupling;
+    private Double efferentCoupling;
 
     public Coupling() {
-        this.afferentCoupling = 0;
-        this.efferentCoupling = 0;
+        this.afferentCoupling = 0.0;
+        this.efferentCoupling = 0.0;
     }
 
-    public Integer getAfferentCoupling() {
+    public Double getAfferentCoupling() {
         return afferentCoupling;
     }
 
-    public void setAfferentCoupling(Integer afferentCoupling) {
+    public void setAfferentCoupling(Double afferentCoupling) {
         this.afferentCoupling = afferentCoupling;
     }
 
-    public Integer getEfferentCoupling() {
+    public Double getEfferentCoupling() {
         return efferentCoupling;
     }
 
-    public void setEfferentCoupling(Integer efferentCoupling) {
+    public void setEfferentCoupling(Double efferentCoupling) {
         this.efferentCoupling = efferentCoupling;
     }
 }

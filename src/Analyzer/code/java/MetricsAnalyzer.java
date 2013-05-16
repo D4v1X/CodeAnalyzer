@@ -9,7 +9,7 @@ import Analyzer.structure.GenericFile;
 
 public class MetricsAnalyzer {
 
-    public static Metrics createDirectoryTree(Directory root) {
+    public static Metrics createDataMetrics(Directory root) {
         PackageMetrics rootpackageMetrics = new PackageMetrics(root.getSimpleName());
         for (GenericFile fileActual : root.getGenericFileChildren()) {
             childrenCreator(fileActual, rootpackageMetrics);
@@ -19,7 +19,7 @@ public class MetricsAnalyzer {
 
     private static void childrenCreator(GenericFile fileActual, PackageMetrics rootpackageMetrics) {
         if (fileActual.isDirectory()) {
-            rootpackageMetrics.addMetrics(MetricsAnalyzer.createDirectoryTree((Directory) fileActual));
+            rootpackageMetrics.addMetrics(MetricsAnalyzer.createDataMetrics((Directory) fileActual));
         }
         if (fileActual.isCodeFile()) {
             FileLoader fileLoader = new FileLoader(fileActual.getPath());

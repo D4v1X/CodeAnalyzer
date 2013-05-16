@@ -22,15 +22,15 @@ public class CodeParseTest {
     @Test
     public void testSplitCode() {
         code.splitCode();
-        assertEquals(2, code.getMetricsListSize(), 0);
+        assertEquals(2.0, code.getMetricsListSize(), 0.0);
     }
 
     @Test
     public void testSplitCodeComplex() {
         codeComplex.splitCode();
-        assertEquals(2, codeComplex.getMetricsListSize(), 0);
+        assertEquals(2.0, codeComplex.getMetricsListSize(), 0.0);
         Metrics[] m = codeComplex.getMetricsList();
         ClassMetrics cm = (ClassMetrics) m[1];
-        assertEquals(5, cm.getMethodMetricsListSize(), 0);
+        assertEquals(5.0, cm.getMethodMetricsListSize(), 0.0);
     }
 }
