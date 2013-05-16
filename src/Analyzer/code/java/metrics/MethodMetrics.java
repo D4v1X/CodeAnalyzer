@@ -4,15 +4,15 @@ import Analyzer.code.LineType;
 import Analyzer.code.java.Contains;
 
 public class MethodMetrics extends CodeMetrics {
-
+    
     public MethodMetrics(String name) {
         super(name);
     }
-
+    
     public MethodMetrics(String name, String[] code) {
         super(name, code);
     }
-
+    
     public Double getNumberOfParameters() {
         String head = code.get(0);
         String[] tokens = head.split("[()]");
@@ -22,62 +22,31 @@ public class MethodMetrics extends CodeMetrics {
         }
         return (double) tokens.length;
     }
-//TODO Fix if
 
     public Double getCyclomaticComplexity() {
-        Integer cyclomaticComplexit = 0;
+        Integer cyclomaticComplexity = 0;
         Integer numberLine = 0;
+        String[] symbolsArray = new String[]{
+            "if", "else if", "else", "case",
+            "foreach", "while", "for",
+            "default", "continue", "catch", "return",
+            "||", "&&", "?", "=="
+        };
+        
         for (String line : code) {
             numberLine++;
             if (lineTypeTable.get(numberLine) == LineType.EFFECTIVE) {
-                if (line.contains("if")) {
-                    cyclomaticComplexit++;
-                }
-                if (line.contains("else if")) {
-                    cyclomaticComplexit++;
-                }
-                if (line.contains("else")) {
-                    cyclomaticComplexit++;
-                }
-                if (line.contains("for")) {
-                    cyclomaticComplexit++;
-                }
-                if (line.contains("foreach")) {
-                    cyclomaticComplexit++;
-                }
-                if (line.contains("while")) {
-                    cyclomaticComplexit++;
-                }
-                if (line.contains("case")) {
-                    cyclomaticComplexit++;
-                }
-                if (line.contains("default")) {
-                    cyclomaticComplexit++;
-                }
-                if (line.contains("continue")) {
-                    cyclomaticComplexit++;
-                }
-                if (line.contains("&&")) {
-                    cyclomaticComplexit++;
-                }
-                if (line.contains("||")) {
-                    cyclomaticComplexit++;
-                }
-                if (line.contains("catch")) {
-                    cyclomaticComplexit++;
-                }
-                if (line.contains("?")) {
-                    cyclomaticComplexit++;
-                }
-                if (line.contains("return")) {
-                    cyclomaticComplexit++;
+                for (String symbol : symbolsArray) {
+                    if (line.contains(symbol)) {
+                        cyclomaticComplexity++;
+                        break;
+                    }
                 }
             }
-
-        }
-        return (double) cyclomaticComplexit;
+        }        
+        return (double) cyclomaticComplexity;
     }
-
+    
     public Boolean isUsed(String attribute) {
         for (String line : code) {
             if (Contains.Atribute(line, attribute)) {
@@ -86,17 +55,17 @@ public class MethodMetrics extends CodeMetrics {
         }
         return false;
     }
-
+    
     @Override
     public Boolean isClassMetrics() {
         return false;
     }
-
+    
     @Override
     public Boolean isMethodMetrics() {
         return true;
     }
-
+    
     @Override
     public Boolean isPackageMetrics() {
         return false;

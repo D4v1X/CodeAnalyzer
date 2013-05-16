@@ -20,6 +20,13 @@ public class ClassMetrics extends CodeMetrics {
         super(name, code);
         methodMetricsList = new ArrayList<>();
         attributeList = new ArrayList<>();
+        extractAttributes();
+    }
+
+    @Override
+    public void setCode(String[] codeArray) {
+        super.setCode(codeArray);
+        extractAttributes();
     }
 
     public void addMethod(MethodMetrics method) {
@@ -31,21 +38,6 @@ public class ClassMetrics extends CodeMetrics {
     }
 
     public Double getNumberOfAttribute() {
-        Boolean inAttributeZone = false;
-        Integer numberOfLine = 0;
-        for (String line : code) {
-            numberOfLine++;
-            if (Contains.Class(line) && !inAttributeZone) {
-                inAttributeZone = true;
-            } else if (Contains.Function(line) && inAttributeZone) {
-                inAttributeZone = false;
-            } else if (inAttributeZone
-                    && LineType.EFFECTIVE == lineTypeTable.get(numberOfLine)
-                    && Contains.SemiColon(line)) {
-                String[] tokens = line.split("[ ;]");
-                attributeList.add(tokens[tokens.length - 1]);
-            }
-        }
         return (double) attributeList.size();
     }
 
@@ -53,10 +45,16 @@ public class ClassMetrics extends CodeMetrics {
         return calculateLOCM();
     }
 
+    public MethodMetrics[] getMethodMetricsList() {
+        return methodMetricsList.toArray(new MethodMetrics[methodMetricsList.size()]);
+    }
+
+    public Double getMethodMetricsListSize() {
+        return (double) methodMetricsList.size();
+    }
+
     private Double calculateLOCM() {
-        Double F = getNumberOfAttribute();
-        Double M = getNumberOfMethod();
-        return 1 - (getSummationMF() / (M * F));
+        return 1 - (getSummationMF() / (getNumberOfAttribute() * getNumberOfMethod()));
     }
 
     private Double getSummationMF() {
@@ -71,12 +69,23 @@ public class ClassMetrics extends CodeMetrics {
         return total;
     }
 
-    public MethodMetrics[] getMethodMetricsList() {
-        return methodMetricsList.toArray(new MethodMetrics[methodMetricsList.size()]);
-    }
+    private void extractAttributes() {
+        Boolean inAttributeZone = false;
+        Integer numberOfLine = 0;
+        for (String line : code) {
+            numberOfLine++;
+            if (Contains.Class(line) && !inAttributeZone) {
+                inAttributeZone = true;
+            } else if (inAttributeZone
+                    && LineType.EFFECTIVE == lineTypeTable.get(numberOfLine)
+                    && Contains.SemiColon(line)) {
+                String[] tokens = line.split("[ ;]");
+                attributeList.add(tokens[tokens.length - 1]);
+            } else if (Contains.Function(line) && inAttributeZone) {
+                break;
+            }
 
-    public Double getMethodMetricsListSize() {
-        return (double) methodMetricsList.size();
+        }
     }
     //TODO Cread metrica de Dependencias
     //Nota HashTable for Eferente(num import) (nombre de clase, numero de repeticiones)
