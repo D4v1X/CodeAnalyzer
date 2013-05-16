@@ -54,9 +54,7 @@ public class ClassMetrics extends CodeMetrics {
     }
 
     private Double calculateLOCM() {
-        Double F = getNumberOfAttribute();
-        Double M = getNumberOfMethod();
-        return 1 - (getSummationMF() / (M * F));
+        return 1 - (getSummationMF() / (getNumberOfAttribute() * getNumberOfMethod()));
     }
 
     private Double getSummationMF() {
@@ -78,14 +76,15 @@ public class ClassMetrics extends CodeMetrics {
             numberOfLine++;
             if (Contains.Class(line) && !inAttributeZone) {
                 inAttributeZone = true;
-            } else if (Contains.Function(line) && inAttributeZone) {
-                inAttributeZone = false;
             } else if (inAttributeZone
                     && LineType.EFFECTIVE == lineTypeTable.get(numberOfLine)
                     && Contains.SemiColon(line)) {
                 String[] tokens = line.split("[ ;]");
                 attributeList.add(tokens[tokens.length - 1]);
+            } else if (Contains.Function(line) && inAttributeZone) {
+                break;
             }
+
         }
     }
     //TODO Cread metrica de Dependencias
